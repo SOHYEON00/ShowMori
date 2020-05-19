@@ -1,0 +1,85 @@
+body{
+	padding:0px;
+	margin:0px;
+}
+#header{
+	position:relative;
+}
+#login{
+	position:absolute;
+	top:5px;
+	right:10px;
+}
+	
+#banner{
+	position:relative;
+	top:100px;
+	text-align: center;
+}
+
+#btn_post{
+	position:absolute;
+	left:10px;
+}
+.poster{
+	width:370px;
+	height:430px;
+}
+.article{
+	
+}
+
+/*<!--<html>
+<head> Show-Mori </head>
+<body>
+
+<nav id="header">
+	<span id="login">
+	<button type="button">LOGIN</button>
+	<button type="button" ><img src="./IMG/mypage.png" width="20" height="20"></button>
+	</span>
+</nav>
+
+<div id="banner">
+	<button type="button"> <img src="./IMG/search.png" width="30" height="30"></button>
+	<img src="./IMG/line.png" width="200" height="30" />
+	<button type="button" id="btn_post"> 공연 게시하기 </button>
+</div>
+
+
+<div id="body">
+	<button><img src="./IMG/poster1.jpg" class="poster"></button>
+		<p class="article">
+			<h3>내 아내의 모든 것</h3>
+			<h4><strong>후원현황</strong> 70% 700,000원</h4>
+			<button>후원하러 가기</button></p>
+<form action ="./Show.php" method="POST" >
+<p> 공연 제목 : <input type="text" name="title"</p>
+<p> 작성자 : <input type="text" name="user"</p>
+<p> 캐스트 : <textarea name="cast"></textarea></p>
+<p> 시놉 : <textarea name="synop"></textarea></p>
+<input type="submit" name="name">
+</form>
+
+	
+</body>
+
+</html>
+<?
+if ($conn->connect_error) {
+       printf("Connect failed: %s\n", $conn->connect_error);
+       exit();
+     }
+mysqli_select_db($conn, "showmori");
+
+if($picture != "none"){
+	$psize = filesize($picture);
+	$mysqlPicture = addslashes(fread(fopen($picture, "r"),$psize));
+	$conn = mysqli_connect("localhost","root","0204");
+	mysql_query("INSERT INTO post_t (S_PRM,U_PRM,S_TITLE,S_CAST,S_SYNOP) VALUES ('1','1','ttile','{$mysqlPicture}','{$synop}')");
+}
+
+
+mysqli_close($conn);
+?>
+-->*/
