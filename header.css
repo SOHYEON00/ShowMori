@@ -1,7 +1,4 @@
-body{
-	padding:0px;
-	margin:0px;
-}
+
 
 /*header part*/
 #header{
@@ -27,12 +24,12 @@ h1.title{
 	left:50%;
 	top:230px;
 	transform: translate(-50%, -50%);
-	width:500px;
+	width:600px;
 	text-align: center;
 }
 #search_text {
-	width:350px;
-	height:40px;
+	width:500px;
+	height:37px;
 }
 #login{
 	position:absolute;
@@ -46,44 +43,28 @@ button{
 	background-color: white;
 	padding:5px;
 }
-#login button{
+.login_botton{
+	position: relative;
+	top: -5px;
 	font-family: 'Nanum Gothic', sans-serif;
 	color:#FA6462;
-	font-size: 17px;
+	font-size: 23px;
 }
-
 
 #btn_post{
 	position: absolute;
     font-family: 'Nanum Gothic', sans-serif;
     top: 230px;
     left:3%;
-    font-size: 17px;
+    font-size: 23px;
     font-weight: bold;
 }
 
-/*banner part*/
-#banner{
-	position: relative;
-	width:90%;
-	left:5%;
-	top:30px;
-	height: 640px;
+.title a:link{
+	color:black;
+	text-decoration: none;
 }
-#banner img{ width:100%; }
-
-#banner h3{
-	position:absolute;
-	top:75px;
-	color:#FA6462;
-}
-
-#banner p{
-	position: absolute;
-	text-align: right;
-    top: 150px;
-    font-size: 35px;
-    color: white;
-    right: 20px;
-    font-family: 'Nanum Brush Script', cursive;
+.title a:visited{
+	color:black;
+	text-decoration: none;
 }

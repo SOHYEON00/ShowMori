@@ -20,9 +20,9 @@ INSERT INTO user_t VALUES (10,"tomato","tomato","토마토","010-9999-9999");
 
 
 
-INSERT INTO POST_T VALUES (1,1,'김종욱찾기.jpg','김종욱찾기 시놉.jpg');
-INSERT INTO POST_T VALUES (2,1,'빨래.jpg','빨래 시놉.jpg');
-INSERT INTO POST_T VALUES (3,7,'브로드웨이42번가.jpg','브로드웨이42번가 시놉.jpg');
+INSERT INTO POST_T VALUES (1,1,'김종욱찾기.jpg','김종욱찾기 시놉.jpg','김종욱 찾기');
+INSERT INTO POST_T VALUES (2,1,'빨래.jpg','빨래 시놉.jpg','빨래');
+INSERT INTO POST_T VALUES (3,7,'브로드웨이42번가.jpg','브로드웨이42번가 시놉.jpg','브로드웨이 42번가');
 
 
 

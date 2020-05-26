@@ -1,6 +1,7 @@
 <html>
 <head>
-	<link rel="stylesheet" href="./Show-.css"/>
+	<link rel="stylesheet" href="./header.css"/>
+	<link rel="stylesheet" href="./main_page.css"/>
 <!--	<script type="text/javascript" src="Show-.js"></script>-->
 </head>
 <body>
@@ -8,19 +9,19 @@
 
 <!--header part -->
 	<div id="header">
-	<h1 class="title">SHOW-MORI </h1>
+	<h1 class="title"><a href="./main_page.html">SHOW-MORI </a></h1>
 
 	<span id="search">
-	<button type="button" ><img src="./IMG/search.jpg" width="40" height="40"></button>
+	<button type="button" ><img src="./IMG/search.jpg" width="40" height="40" ></button>
 	<input type="text" id="search_text">
 	</span>
 
 	<button type="button" name="post" id="btn_post">공연 게시하기</button>
 
 	<span id="login">
-	<button type="button">로그인</button>/
-	<button type="button">회원가입</button>
-	<button type="button" ><img src="./IMG/profile.jpg" width="30" height="30" >	</button>
+	<button type="button" class="login_botton">로그인</button>/
+	<button type="button" class="login_botton">회원가입</button>
+	<button type="button" ><img src="./IMG/profile.jpg" width="40" height="40"  onclick="location.href='myPage.html'"></button>
 	</span>
 
 	</div>
@@ -28,13 +29,30 @@
 <!--banner part -->
 	<div id="banner">
 	<img src="./IMG/mainpicture.jpg"/>
-	<h3 style="right:286px; font-size: 38px;">CROWD FUNDING</h3> <h3 class="title" style="font-family: 'Fredoka One', cursive; right:30px; font-size: 40px"> SHOW-MORI</h3>
+	<h3 style="right:286px; font-size: 38px;">CROWD FUNDING</h3> <h3 class="title" style="font-family: 'Fredoka One', cursive; right:50px; font-size: 38px"> SHOW-MORI</h3>
 	<p>크라우드 펀딩을 통한<br> 후원형 공연 온라인 플랫폼 SHOW-MORI입니다.<br>후원이 필요한 공연을 직접 게시하고<br> 다양한 분야의 공연에 후원 해 보세요!</p>
 	</div>
 
-
 <!--body part -->
 <div id="body">
+<?
+include './dbconn.php';
+
+	$qPoster = "SELECT * FROM POST_T";
+	$rPoster = mysqli_query($conn,$qPoster);
+
+	while($row =mysqli_fetch_array($rPoster)){
+		echo "
+		<table>
+			<tr>
+			<td><img src='./data/IMG/".$row['S_POSTER']."'></td>
+			</tr>
+		</table>
+		";
+	}
+mysqli_close($conn);
+?>
+
 </div>
 	
 </body>
