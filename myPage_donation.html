@@ -1,0 +1,53 @@
+<html>
+<head>	
+	<link rel="stylesheet" href="./header.css?after"/>
+	<link rel="stylesheet" href="./myPage.css"/>
+</head>
+<body>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nanum+Brush+Script&family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
+
+<!--header part -->
+<div id="header">
+	<h1 class="title"><a href="./main_page.html" >SHOW-MORI</a> </h1>
+
+	<span id="search">
+	<button type="button" ><img src="./IMG/search.jpg" width="40" height="40" ></button>
+	<input type="text" id="search_text">
+	</span>
+
+	<button type="button" name="post" id="btn_post">공연 게시하기</button>
+
+	<span id="login">
+	<button type="button" class="login_botton">로그인</button>/
+	<button type="button" class="login_botton">회원가입</button>
+	<button type="button" ><img src="./IMG/profile.jpg" width="40" height="40"  onclick="location.href='myPage.html'"></button>
+	</span>
+	<img src="./data/IMG/line.png" id="line"/>
+</div>
+
+
+<div id="body">
+<table>
+	<tr>
+		<td>index</td>
+		<td>공연</td>
+		<td>펀딩 현황</td>	
+		<td>후원 금액</td>
+		<td>리워드</td>
+		<td>후원 현황</td>
+	</tr>
+	<tr>
+		<td>1</td><!-- 인덱스 -->
+		<td>김종욱 찾기</td><!--공연이름 -->
+		<td>80% (진행중)</td><!-- 펀딩 현황 -->	
+		<td>15,000</td><!-- 후원 가격 -->
+		<td>티켓, 팜플렛, 포스터, 엽서, 향초, 기념사진 촬영</td><!-- 리워드 -->
+		<td>Y</td><!-- 후원 현황 -->
+		<input type="button" class="mod">
+	</tr>
+</table>
+</div>
+
+
+</body>
+</html>
