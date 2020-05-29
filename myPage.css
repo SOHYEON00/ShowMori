@@ -1,0 +1,65 @@
+#body{
+	height:1800px;
+}
+#user{
+	position: relative;
+    top: 13%;
+    text-align: center;
+}
+
+#userImg{
+	width: 53px;
+    height: 53px;
+    position: absolute;
+    left: 42.6%;
+}
+
+#userId{
+	position: absolute;
+	top: 7px;
+    font-size: 32px;
+    font-weight: bold;
+    left: 47.6%;
+}
+
+#n{
+	position: absolute;
+	font-family: 'Nanum Brush Script', cursive;
+	font-size: 48px;
+    left:52.9%;
+    top: 5px;
+}
+#div_content{
+	position: absolute;
+	left: 50%;
+	margin: 0 auto;
+	top: 340px;
+	transform: translate(-50%, -50%);
+}
+.content{
+	font-family: 'Nanum Brush Script', cursive;
+    font-size: 35px;
+    font-weight: 550;
+}
+
+hr{
+	width: 400px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   	border:1px solid #A7AAC1;
+}
+
+.column{
+	position:absolute;
+	height: 460px;
+	top:100px;
+}
+
+.content a{
+	text-decoration: none;
+	color:black;
+}
+.content a:hover{
+	color:#C63A5B;
+}

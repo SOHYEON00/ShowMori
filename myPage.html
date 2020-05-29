@@ -1,6 +1,6 @@
 <html>
 <head>	
-	<link rel="stylesheet" href="./header.css"/>
+	<link rel="stylesheet" href="./header.css?after"/>
 	<link rel="stylesheet" href="./myPage.css"/>
 </head>
 <body>
@@ -22,21 +22,27 @@
 	<button type="button" class="login_botton">회원가입</button>
 	<button type="button" ><img src="./IMG/profile.jpg" width="40" height="40"  onclick="location.href='myPage.html'"></button>
 	</span>
+	<img src="./data/IMG/line.png" id="line"/>
 </div>
 
 <!--body part -->
 <div id="body">
-	<img src="./IMG/profile.jpg" width="40" height="40" />
+	<div id="user">
+		<img src="./IMG/profile.jpg" id="userImg" />
 
-	<p> <!--print USER ID -->
-	<h4 id="user_id"></h4> 님 </p> 
+		 <!--print USER ID -->
+		<a id="userId">Apple</a><a id="n">님 </a> 
 
-	<P>후원자</P>
-	<P>후원내역</P>
+		<hr style="top: 90px;"><hr style="top:590px;" />
 
-	<P>호스트</P>
-	<P>펀딩 현황</P>
+		<div id="div_content">
+			<P class="content"><a href="./myPage_donation.html">후원 내역</a></P>
+			<P class="content"><a href="./myPage_funding.html">펀딩 현황</a></P>
+			<P class="content"><a href="./myInfo.html">내 정보변경</a></P>
+			<P class="content"><a href="./main_page.html">로그아웃</a></P>
+		</div>
 
+	</div>
 </div>
 
 
