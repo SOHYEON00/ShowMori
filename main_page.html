@@ -5,7 +5,7 @@
 <!--	<script type="text/javascript" src="Show-.js"></script>-->
 </head>
 <body>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nanum+Brush+Script&family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Do+Hyeon&family=Nanum+Brush+Script&family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
 
 <!--header part -->
 	<div id="header">
@@ -35,23 +35,13 @@
 
 <!--body part -->
 <div id="body">
-<?
-include './dbconn.php';
 
-	$qPoster = "SELECT * FROM POST_T";
-	$rPoster = mysqli_query($conn,$qPoster);
-
-	while($row =mysqli_fetch_array($rPoster)){
-		echo "
-		<table>
-			<tr>
-			<td><img src='./data/IMG/".$row['S_POSTER']."'></td>
-			</tr>
-		</table>
-		";
-	}
-mysqli_close($conn);
-?>
+<!-- print posters -->
+<table>
+<tr>
+<? include './printImg.php'?> 
+</tr>
+</table>
 
 </div>
 	
