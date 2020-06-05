@@ -5,4 +5,4 @@ $conn = mysqli_connect("localhost","root","0204","showmori");
 		printf("Connect failed: %s",$conn->connect_error);
 		exit();
 	}
-?>ss
+?>

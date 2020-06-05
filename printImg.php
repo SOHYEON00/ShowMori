@@ -12,8 +12,8 @@ include './dbconn.php';
 
 		echo "
 			<td>
-			<img src='./data/IMG/".$row['S_POSTER']."'/>
-			<p id='s_title'>$title</p>
+			<a href='./s_info_page.html'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
+			<a href='./s_info_page.html'><p id='s_title'>$title</p></a>
 			<p class='t_content'>펀딩현황 <a>$goalSum</a></p>
 			<p class='t_content'>마감날짜 <a>$deadLine</a></p>		
 			</td>";

@@ -1,0 +1,34 @@
+<html>
+<!-- print header -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script type="text/javascript">
+
+//페이지가 로드되면 실행한다.
+$(document).ready( function() {
+
+  $("#header").load("header.html");
+});
+
+</script>
+
+<div id="header"></div>
+  <div id="showmorilogin">
+  <p align="center"><IMG src="line.jpg" width=1500 height=5></IMG></p>
+  <form action='./login2.php' name='login_form' method='post'>
+    <br>
+    <br>
+    <div class="rectangle">
+    <CENTER>로그인</b><br>
+      <label>ID : </label><input type="text" name="user_id" class="box"/><br>
+      <label>PW : </label><input type="text" name="user_password" class="box"/></br>
+
+      <center><input type="button" value="로그인" OnClick="checkform();"/>
+      <center><input type="button" value="회원가입" OnClick="newcheckform();"/></br>
+      </div>
+  </div>
+
+
+
+    </body>
+</html>

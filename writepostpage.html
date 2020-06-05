@@ -1,0 +1,48 @@
+<html>
+<!-- print header -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script type="text/javascript">
+
+//페이지가 로드되면 실행한다.
+$(document).ready( function() {
+
+  $("#header").load("header.html");
+});
+
+</script>
+
+<div id="header"></div>
+
+  <div id="upload">
+  <p align="center"><IMG src="line.jpg" width=1500 height=5></IMG></p>
+  <form action="./search.php">제목
+    <input type="text" name="title">
+  </form>
+
+  <form action="./search.php">포스터
+  <input type="file" name="fileName">
+  </form>
+
+  <form action="./search.php">목표금액 ￦
+    <input type="text" name="goalprice">
+  </form>
+
+  <form action="./search.php">마감날짜
+    <input type="text" name="deadline">
+  </form>
+
+  <form action="./search.php">시놉시스
+    <input type="file" name="story">
+  </form>
+
+  <form action="./search.php">공연날짜<br>
+    Start Date :  <input type="date" name="startdate">
+    End Date :  <input type="date" name="enddate">
+
+  <br clear="left">
+  <input type="submit" value="등록하기">
+
+</div>
+    </body>
+</html>
