@@ -1,32 +1,100 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+
 #postbody{
-    margin-top:5px;
-    margin-right:200px;
-    margin-botton:5px;
-    margin-left:300px;
+    width:70%;
+    height:1500px;
+    position:absolute;
+    left:15%;
+    padding:30px 0;
+    display:inline-block;
+    font-family: 'Nanum Brush Script';
+    font-size : 20px;
+    top:60%
 }
 
+
 .title{
+  width:100%;
 	font-family: 'Nanum Brush Script';
 	font-weight :bold;
 	font-size :80px;
   text-align:center;
 }
 
+.img_post{
+  width:35%;
+  height:500px;
+  float : left;
+  margin-right:10px;
+  padding-left:15%;
+}
+
+.img_synop{
+  width:50%
+  float:left;
+  position:absolute;
+  top:150%;
+  left:50%;
+  margin:0 0 0 -18%;
+}
+
+.posttext{
+  width :35%;
+  height:400px;
+  float : left;
+  font-family: 'Nanum Brush Script';
+  font-size : 20px;
+}
+
+.postbody:after{
+  content:'';
+  display:block;
+  clear:both;
+}
+
 p{
   font-family: 'Nanum Brush Script';
-  font-weight:bold;
-  font-size : 50px;
+  font-size : 20px;
 }
 
 .rectangle{
   display:block;
   width:400px;
-  heignt:150px;
-  padding:20px;
+  padding:10px;
   overflow:hidden;
   test-align:left;
   background:#EAEAEA;
   border:1px solid gray;
+}
+
+span{
+  font-family: 'Nanum Brush Script';
+  font-size : 30px;
+  font-weight: bold;
+}
+
+.submit_button{
+  font-family: 'Nanum Brush Script';
+  font-size:25px;
+  color:white;
+  background-color:#CC3333;
+  border:0px;
+  width:150px;
+  height:40px;
+}
+
+.login_button{
+  font-family: 'Nanum Brush Script';
+  font-size:25px;
+  color:white;
+  background-color:#336699;
+  border:0px;
+  width:150px;
+  height:40px;
+}
+
+.select_reward{
+  width:150px;
+  height:35px;
 }

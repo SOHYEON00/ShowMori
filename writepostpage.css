@@ -1,0 +1,77 @@
+body{
+    height: 2400px;
+}
+h3{
+	position: relative;
+    top: 17%;
+    left: 20%;
+}
+/*input div box*/
+#post{
+	position: relative;
+    top: 18%;
+    border: 1px solid #D9D9D9;
+    left: 50%;
+    width: 60%;
+    height: 60%;
+    transform: translate(-50%);
+}
+/*input 공연정보 box*/
+#showInfo{
+    position: relative;
+    left: 5%;
+    top: 7%;
+    width: 90%;
+    height: 45%;
+}
+/*input 후원정보 box*/
+#supportInfo{
+	position: relative;
+    left: 5%;
+    width: 90%;
+    height: 27%;
+ }
+
+table{
+	position:absolute;
+	top:25%;
+	width:100%;
+	border-spacing: 15px;
+}
+.row1{
+	width:17%;
+	text-align: right;
+	font-size: 21px;
+}
+td input{
+	height:30px;
+}
+.title{
+	font-size: 19px;
+	font-weight: 100;
+	color:#A6A6A6;
+}
+
+#extra{
+	position:relative;
+	width: 90%;
+	left: 5%;
+	height: 20%
+}
+#extra input{
+	width: 100%;
+    position: absolute;
+    height: 150px;
+}
+
+#post_btn{
+ 	font-size:30px;
+	position: absolute;
+    top: 250%;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: #F96B6B;
+    color:white;
+    border-radius: 12px;
+    height: 40px;
+}	

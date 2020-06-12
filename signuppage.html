@@ -1,36 +1,44 @@
 <html>
-<!-- print header -->
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<head>
+  <!-- print header -->
+  <link rel="stylesheet" type="text/css" href="./login.css?after">
+  <link rel="stylesheet" type="text/css" href="./post.css?after">
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-<script type="text/javascript">
+  <script type="text/javascript">
 
-//페이지가 로드되면 실행한다.
-$(document).ready( function() {
+  //페이지가 로드되면 실행한다.
+  $(document).ready( function() {
 
-  $("#header").load("header.html");
-});
+    $("#header").load("header.html");
+  });
 
-</script>
+  </script>
+</head>
 
-<div id="header"></div>
+<body>
+  <div id="header"></div>
 
-  <div id="showmorilsignup">
-  <p align="center"><IMG src="line.jpg" width=1500 height=5></IMG></p>
-  <form action='./login2.php' name='login_form' method='post'>
-    <br>
-    <br>
-    <div class="rectangle">
-    <CENTER>회원가입<br>
-      <label>ID : </label><input type="text" name="user_id" class="box"/><br>
-      <label>PW : </label><input type="text" name="user_password" class="box"/></br>
-      <label>회원이름 : </label><input type="text" name="user_password" class="box"/></br>
-      <label>전화번호 : </label><input type="text" name="user_password" class="box"/></br>
-
-      <center><input type="button" value="가입" OnClick="newcheckform();"/></br>
-      </div>
-  </div>
+  <form name="join" method="post" action="memberSave.php">
 
 
+  <div class="showmorilsignup">
 
-    </body>
+    <!-- <form action='./login2.php' name='login_form' method='post'> -->
+      <form method="post" action="member.php">
+      <br>
+      <br>
+      <div class="signup_rectangle">
+      <CENTER><p class="login_title">회원가입</p><br>
+        <p><label>ID : </label><input type="text" name="user_id" class="box"/></p>
+        <p><label>PW : </label><input type="password" name="user_password" class="box"/></p>
+        <p><label>회원이름 : </label><input type="text" name="user_name" class="box"/></p>
+        <p><label>전화번호 : </label><input type="text" name="user_phone" class="box"/></p>
+
+        <!-- <center><input type="button" value="가입" OnClick="newcheckform();"/></br> -->
+        <br><br>
+        <input type="submit" value="가입하기" class="submit_button" />
+        </div>
+    </div>
+</body>
 </html>

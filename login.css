@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+
+
+#showmorilogin{
+  position:relative;
+  width:100%;
+  top:80%;
+}
+
+.login_rectangle{
+  display:block;
+  width:400px;
+  height:400px;
+  padding:10px;
+  overflow:hidden;
+  test-align:left;
+  background:#EAEAEA;
+  border:1px solid gray;
+  position:absolute;
+  left:50%;
+  margin:0 0 0 -200px;
+}
+
+.signup_rectangle{
+  display:block;
+  width:400px;
+  height:450px;
+  padding:10px;
+  overflow:hidden;
+  test-align:left;
+  background:#EAEAEA;
+  border:1px solid gray;
+  position:absolute;
+  left:50%;
+  margin:0 0 0 -200px;
+}
+
+p{
+  font-family: 'Nanum Brush Script';
+}
+
+.login_title{
+  font-size:40px;
+}
