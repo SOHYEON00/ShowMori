@@ -1,4 +1,5 @@
 <html>
+
 <!-- print header -->
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
@@ -10,17 +11,37 @@ $(document).ready( function() {
   $("#header").load("header.html");
 });
 
+function chkForm(){
+    var title = post_form.title;
+    var fileSynop = post_form.fileSynop;
+    var filePoster = post_form.filePoster;
+    var startDate = post_form.startDate;
+    var lastDate = post_form.lastDate;
+    var deadLine = post_form.deadLine;
+    var goalSum = post_form.goalSum;
+
+
+    //공백체크
+    if(!title.value || !fileSynop.value || !filePoster.value ||!startDate.value  ||!lastDate.value || !deadLine.value||!goalSum.value){
+      alert("정보를 모두 입력해주세요. ");
+      document.post_form.focus();
+    }
+    else{
+      window.location.href="getShowInfo.php";
+    }
+}
+
 </script>
 
 <link rel="stylesheet" href="./writepostpage.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:&family=Do+Hyeon&family=Nanum+Brush+Script&family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
 
-<div id="header"></div>
+<div id="header"></div> 
   
   <h3>POST NEW PROJECT</h3>
   <div id="post">
 
-<form action="./getShowInfo.php" method="GET">
+<form name="post_form"  method="GET" >
     <div id="showInfo">
    
       <p class="title">SHOW informatioin</p>
@@ -28,7 +49,7 @@ $(document).ready( function() {
         <table>
           <tr>
             <td class="row1">타이틀</td>
-            <td ><label><input type="text" name="title" class="inputText" style="width: 80%;"></label></td>
+            <td ><label><input type="text" name="title" class="inputText" style="width: 80%;"></label></td>   
           </tr>
           <tr>
             <td class="row1">시놉시스</td>
@@ -72,8 +93,9 @@ $(document).ready( function() {
       </div>
     
   </div>
+  <input type="button" id="post_btn" value="POST" onClick="chkForm()">
 
-  <input type="submit" value="POST" onClick="getShowInfo.php" id="post_btn">
 </form>
+
 </body>
 </html>
