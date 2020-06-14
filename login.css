@@ -13,7 +13,7 @@
   height:400px;
   padding:10px;
   overflow:hidden;
-  test-align:left;
+  text-align:left;
   background:#EAEAEA;
   border:1px solid gray;
   position:absolute;
@@ -27,7 +27,7 @@
   height:450px;
   padding:10px;
   overflow:hidden;
-  test-align:left;
+  text-align:left;
   background:#EAEAEA;
   border:1px solid gray;
   position:absolute;
