@@ -1,47 +1,70 @@
 <html>
-
+<head>
 <!-- print header -->
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-<script type="text/javascript">
+  <script type="text/javascript">
 
-//페이지가 로드되면 실행한다.
-$(document).ready( function() {
+  //페이지가 로드되면 실행한다.
+  $(document).ready( function() {
 
-  $("#header").load("header.html");
-});
+    $("#header").load("header.html");
+  });
 
-function chkForm(){
-    var title = post_form.title;
-    var fileSynop = post_form.fileSynop;
-    var filePoster = post_form.filePoster;
-    var startDate = post_form.startDate;
-    var lastDate = post_form.lastDate;
-    var deadLine = post_form.deadLine;
-    var goalSum = post_form.goalSum;
+  function chkForm(){
+      var title = post_form.title;
+      var fileSynop = post_form.fileSynop;
+      var filePoster = post_form.filePoster;
+      var startDate = post_form.startDate;
+      var lastDate = post_form.lastDate;
+      var deadLine = post_form.deadLine;
+      var goalSum = post_form.goalSum;
 
+      var dateS = new Date(startDate.value);
+      var dateL = new Date(lastDate.value);
+      var dateD = new Date(deadLine.value);
 
-    //공백체크
-    if(!title.value || !fileSynop.value || !filePoster.value ||!startDate.value  ||!lastDate.value || !deadLine.value||!goalSum.value){
-      alert("정보를 모두 입력해주세요. ");
-      document.post_form.focus();
-    }
-    else{
-      window.location.href="getShowInfo.php";
-    }
-}
+      //공백체크
+      if(!title.value || !fileSynop.value || !filePoster.value ||!startDate.value  ||!lastDate.value || !deadLine.value||!goalSum.value){
+        alert("정보를 모두 입력해주세요. ");
+        return;     
+      }
+      
+        if(goalSum.value<50000){
+          alert("목표금액은 최소 50,000입니다.");
+          document.post_form.goalSum.focus();
+          return;
+        }
+        if((+dateS)>=(+dateL)){
+          alert("공연 시작날짜가 공연 마감날짜와 같거나 늦습니다.");
+          document.post_form.startDate.focus();
+          return;
+        }
+        if((+dateD)>=(+dateS)){
+          alert("후원 마감날짜는 공연 시작날짜보다 늦을 수 없습니다.");
+          document.post_form.deadline.focus();
+          return;
+        }
+        
+        // window.location.href='getShowInfo.php';
+        window.location.href='/getShowInfo.php?title='+title.value+'&fileSynop='+fileSynop.files[0].name+'&filePoster='+filePoster.files[0].name+'&startDate='+startDate.value+'&lastDate='+lastDate.value+'&deadLine='+deadLine.value+'&goalSum='+goalSum.value;
+        
 
-</script>
+    
+  }
+  </script>
+</head>
 
+<body>
 <link rel="stylesheet" href="./writepostpage.css"/>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One:&family=Do+Hyeon&family=Nanum+Brush+Script&family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Do+Hyeon&family=Nanum+Brush+Script&family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
 
 <div id="header"></div> 
   
   <h3>POST NEW PROJECT</h3>
   <div id="post">
 
-<form name="post_form"  method="GET" >
+<form name="post_form" method="GET">
     <div id="showInfo">
    
       <p class="title">SHOW informatioin</p>
@@ -92,10 +115,9 @@ function chkForm(){
         <p class="title"> extra <hr style="border-top: 1px solid #D9D9D9;"> <input type="text"> </p>
       </div>
     
-  </div>
-  <input type="button" id="post_btn" value="POST" onClick="chkForm()">
-
-</form>
+    </div>
+    <input type="button" id="post_btn" value="POST" onClick='chkForm()'/>
+  </form>
 
 </body>
 </html>
