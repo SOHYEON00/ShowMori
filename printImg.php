@@ -4,7 +4,7 @@ include './dbconn.php';
 	$qInfo = "SELECT S_TITLE,S_POSTER,S_GOALSUM,S_DEADLINE,S_PRM from post_t;";
 	$rPoster = mysqli_query($conn,$qInfo);
 	$nDate = date('Y-m-d');
-
+	$cnt=1;
 
 	while($row=mysqli_fetch_array($rPoster)){
 		$title = $row['S_TITLE'];//공연제목
@@ -21,21 +21,57 @@ include './dbconn.php';
 
 		$percentage =round($row2['sum']/$row['S_GOALSUM'],2);
 
-
-		echo "
-			<td>
-			<a href='./s_info_page.html'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
-			<a href='./s_info_page.html'><p id='s_title'>$title</p></a>
-			<p class='t_content'>$leftSum 남음
-				&nbsp;&nbsp;
-				$percentage %</a>
-			</p>	
-			<p class='t_content'>마감
-				&nbsp;&nbsp;&nbsp;&nbsp;
-			 	<a>D-$leftDate day</a>
-			 </p>		
-			</td>";
 	
+	
+		if($cnt%4==1){
+			echo"
+				<tr>
+				<td>
+				<a href='./s_info_page.html'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
+				<a href='./s_info_page.html'><p id='s_title'>$title</p></a>
+				<p class='t_content'>$leftSum 남음
+					&nbsp;&nbsp;
+					$percentage %</a>
+				</p>	
+				<p class='t_content'>마감
+					&nbsp;&nbsp;&nbsp;&nbsp;
+				 	<a>D-$leftDate day</a>
+				 </p>		
+				</td>
+				";
+				$cnt++;
+		}
+		 else if($cnt%4==0){
+			echo"<td>
+				<a href='./s_info_page.html'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
+				<a href='./s_info_page.html'><p id='s_title'>$title</p></a>
+				<p class='t_content'>$leftSum 남음
+					&nbsp;&nbsp;
+					$percentage %</a>
+				</p>	
+				<p class='t_content'>마감
+					&nbsp;&nbsp;&nbsp;&nbsp;
+				 	<a>D-$leftDate day</a>
+				 </p>		
+				</td>
+				</tr>";
+				$cnt++;
+		}
+		else{
+			echo"<td>
+				<a href='./s_info_page.html'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
+				<a href='./s_info_page.html'><p id='s_title'>$title</p></a>
+				<p class='t_content'>$leftSum 남음
+					&nbsp;&nbsp;
+					$percentage %</a>
+				</p>	
+				<p class='t_content'>마감
+					&nbsp;&nbsp;&nbsp;&nbsp;
+				 	<a>D-$leftDate day</a>
+				 </p>		
+				</td>";
+				$cnt++;
+			}
 	}//print info of show -tuples from DB
 mysqli_close($conn);															
 ?>
