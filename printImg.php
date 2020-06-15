@@ -1,6 +1,8 @@
 <? 
 include './dbconn.php';
 	
+
+
 	$qInfo = "SELECT S_TITLE,S_POSTER,S_GOALSUM,S_DEADLINE,S_PRM from post_t;";
 	$rPoster = mysqli_query($conn,$qInfo);
 	$nDate = date('Y-m-d');
@@ -13,7 +15,10 @@ include './dbconn.php';
 		//GET SUM(D_MONEY) BY BACKING
 		$qSumMoney = "SELECT S_PRM, sum(d_money) as sum from d_info_t WHERE S_PRM='".$show_p."';";
 		$rSumMoney = mysqli_query($conn,$qSumMoney);
-		$row2 = mysqli_fetch_array($rSumMoney);
+
+		if(!$rSumMoney){
+			$row2 = mysqli_fetch_array($rSumMoney);
+		}
 
 		$leftSum = ($row['S_GOALSUM']-$row2['sum']);//goalsum - donated sum
 		$leftDate = intval((strtotime($row['S_DEADLINE'])-strtotime($nDate)) / 86400);
@@ -21,6 +26,12 @@ include './dbconn.php';
 
 		$percentage =round($row2['sum']/$row['S_GOALSUM'],2);
 
+		if($leftDate<=0){
+			$qDet = "DELETE FROM D_INFO_T WHERE S_PRM='".$show_p."';";
+			$qDet .= "DELETE FROM s_date_t WHERE S_PRM='".$show_p."';";
+			$qDet .= "DELETE FROM post_t WHERE S_PRM='".$show_p."';";
+			$rDet = mysqli_multi_query($conn,$qDet);
+		}
 	
 	
 		if($cnt%4==1){

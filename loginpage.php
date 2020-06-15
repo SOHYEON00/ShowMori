@@ -7,7 +7,7 @@ include "dbconn.php";
 <html>
 <!-- print header -->
 <head>
-  <link rel="stylesheet" type="text/css" href="./login.css?after">
+  <link rel="stylesheet" type="text/css" href="./login.css">
   <link rel="stylesheet" type="text/css" href="./post.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
