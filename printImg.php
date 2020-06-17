@@ -9,16 +9,16 @@ include './dbconn.php';
 	$cnt=1;
 
 	while($row=mysqli_fetch_array($rPoster)){
-		$title = $row['S_TITLE'];//공연제목
-		$show_p = $row['S_PRM']; //POST_T.S_PRM
+		$title = $row['S_TITLE'];
+		$show_p = $row['S_PRM']; 
 
-		//GET SUM(D_MONEY) BY BACKING
+		//GET SUM(D_MONEY) BY DONATION
 		$qSumMoney = "SELECT S_PRM, sum(d_money) as sum from d_info_t WHERE S_PRM='".$show_p."';";
 		$rSumMoney = mysqli_query($conn,$qSumMoney);
 
-		if(!$rSumMoney){
+	
 			$row2 = mysqli_fetch_array($rSumMoney);
-		}
+		
 
 		$leftSum = ($row['S_GOALSUM']-$row2['sum']);//goalsum - donated sum
 		$leftDate = intval((strtotime($row['S_DEADLINE'])-strtotime($nDate)) / 86400);
