@@ -1,0 +1,39 @@
+#body{
+	position: relative;
+    top: 20%;
+	height:70%;
+	width:100%;
+}
+
+table{
+	position: relative;
+    width: 70%;
+    top: 23%;
+    margin: 0 auto;
+    text-align: center;
+    border-top: 1px solid #FB7C79;
+    border-collapse: collapse;
+}
+table tr,td{
+	border-bottom: 1px solid #FB7C79;
+	padding: 10px;
+}
+#tr1 {
+	font-weight:bold;
+}
+
+#userId{
+	position: relative;
+    font-size: 21px;
+    font-weight: bold;
+    top: 20%;
+    left: 15%;
+}
+a{
+	color:#FA6460;
+	text-decoration: none;
+}	
+
+a:hover{
+	font-weight: bold;
+}
