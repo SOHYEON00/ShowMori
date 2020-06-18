@@ -16,9 +16,9 @@
 
 .title{
   width:100%;
-	font-family: 'Nanum Brush Script';
-	font-weight :bold;
-	font-size :80px;
+  font-family: 'Nanum Brush Script';
+  font-weight :bold;
+  font-size :80px;
   text-align:center;
 }
 
@@ -53,7 +53,7 @@
   clear:both;
 }
 
-p{
+.p1{
   font-family: 'Nanum Brush Script';
   font-size : 20px;
 }
@@ -63,12 +63,12 @@ p{
   width:400px;
   padding:10px;
   overflow:hidden;
-  test-align:left;
+  text-align:left;
   background:#EAEAEA;
   border:1px solid gray;
 }
 
-span{
+.span1{
   font-family: 'Nanum Brush Script';
   font-size : 30px;
   font-weight: bold;
@@ -98,3 +98,5 @@ span{
   width:150px;
   height:35px;
 }
+
+.clear { clear:both; }

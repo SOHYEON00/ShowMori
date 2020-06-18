@@ -12,7 +12,7 @@
 //페이지가 로드되면 실행한다.
 $(document).ready( function() {
 
-  $("#header").load("header.html");
+  $("#header").load("header.php");
 });
 </script>
 
@@ -29,7 +29,7 @@ $(document).ready( function() {
 <?
 	include './dbconn.php';
 
-	//입력한 텍스트 변수로 받아 검색
+	//search using what wrote
 	$text = $_POST["srchTxt"];
 	$qSrch = "SELECT * FROM POST_T WHERE S_TITLE LIKE '%$text%'";
 	$rSrch = mysqli_query($conn,$qSrch);
@@ -37,7 +37,7 @@ $(document).ready( function() {
 	$cnt=1;
 
 	while($row=mysqli_fetch_array($rSrch)){
-		$title = $row['S_TITLE'];//공연제목
+		$title = $row['S_TITLE'];//title
 		$show_p = $row['S_PRM']; //POST_T.S_PRM
 
 		//GET SUM(D_MONEY) BY BACKING
@@ -51,7 +51,7 @@ $(document).ready( function() {
 
 		$percentage =round($row2['sum']/$row['S_GOALSUM'],2);
 
-	
+		//print table with 4column in 1row
 		if($cnt%4==1){
 			echo"
 				<tr>

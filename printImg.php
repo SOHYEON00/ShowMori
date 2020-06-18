@@ -17,7 +17,7 @@ include './dbconn.php';
 		$rSumMoney = mysqli_query($conn,$qSumMoney);
 
 	
-			$row2 = mysqli_fetch_array($rSumMoney);
+		$row2 = mysqli_fetch_array($rSumMoney);
 		
 
 		$leftSum = ($row['S_GOALSUM']-$row2['sum']);//goalsum - donated sum
@@ -37,50 +37,61 @@ include './dbconn.php';
 		if($cnt%4==1){
 			echo"
 				<tr>
-				<td>
-				<a href='./s_info_page.html'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
-				<a href='./s_info_page.html'><p id='s_title'>$title</p></a>
-				<p class='t_content'>$leftSum 남음
-					&nbsp;&nbsp;
-					$percentage %</a>
-				</p>	
-				<p class='t_content'>마감
-					&nbsp;&nbsp;&nbsp;&nbsp;
-				 	<a>D-$leftDate day</a>
-				 </p>		
-				</td>
+				<form method='POST' action='./s_info_page.php'>
+					<td>
+						<a href='./s_info_page.php'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
+						<a href='./s_info_page.php?title=<?$title?>'><p id='s_title' name='title'>$title</p></a>
+
+						<p class='t_content'>$leftSum 남음
+							&nbsp;&nbsp;
+							$percentage %</a>
+						</p>	
+						<p class='t_content'>마감
+							&nbsp;&nbsp;&nbsp;&nbsp;
+						 	<a name='print_leftDate'>D-$leftDate day</a>
+						 </p>		
+					</td>
+				</form>
 				";
 				$cnt++;
 		}
 		 else if($cnt%4==0){
-			echo"<td>
-				<a href='./s_info_page.html'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
-				<a href='./s_info_page.html'><p id='s_title'>$title</p></a>
-				<p class='t_content'>$leftSum 남음
-					&nbsp;&nbsp;
-					$percentage %</a>
-				</p>	
-				<p class='t_content'>마감
-					&nbsp;&nbsp;&nbsp;&nbsp;
-				 	<a>D-$leftDate day</a>
-				 </p>		
-				</td>
+			echo"
+				<form method='POST' action='./s_info_page.php'>
+					<td>
+						<a href='./s_info_page.php'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
+						<a href='./s_info_page.php'><p id='s_title' name='print_title'>$title</p></a>
+						<p class='t_content'>$leftSum 남음
+							&nbsp;&nbsp;
+							$percentage %</a>
+						</p>	
+						<p class='t_content'>마감
+							&nbsp;&nbsp;&nbsp;&nbsp;
+						 	<a name='print_leftDate'>D-$leftDate day</a>
+						 </p>
+					 </td>
+				 </form>		
 				</tr>";
 				$cnt++;
 		}
 		else{
-			echo"<td>
-				<a href='./s_info_page.html'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
-				<a href='./s_info_page.html'><p id='s_title'>$title</p></a>
-				<p class='t_content'>$leftSum 남음
-					&nbsp;&nbsp;
-					$percentage %</a>
-				</p>	
-				<p class='t_content'>마감
-					&nbsp;&nbsp;&nbsp;&nbsp;
-				 	<a>D-$leftDate day</a>
-				 </p>		
-				</td>";
+			echo"
+				<form method='POST' action='s_info_page.php'>
+					<td>
+						<a href='./s_info_page.php'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
+						<a href='./s_info_page.php'><p id='s_title' name='print_title'>$title</p></a>
+						<p class='t_content'>$leftSum 남음
+							&nbsp;&nbsp;
+							$percentage %</a>
+						</p>	
+						<p class='t_content'>마감
+							&nbsp;&nbsp;&nbsp;&nbsp;
+						 	<a name='print_leftDate'>D-$leftDate day</a>
+						 </p>
+					 </td>
+				 </form>
+
+				";
 				$cnt++;
 			}
 	}//print info of show -tuples from DB

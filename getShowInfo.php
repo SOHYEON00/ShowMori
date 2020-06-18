@@ -107,7 +107,7 @@
         <script type="text/javascript">
         //페이지가 로드되면 실행한다.
         $(document).ready( function() {
-            $("#header").load("header.html");
+            $("#header").load("header.php");
         });
         </script>
         <style>

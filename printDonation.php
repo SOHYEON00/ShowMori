@@ -1,4 +1,6 @@
-
+<?php 
+session_start();
+ ?>
 <html>
 <!-- print header -->
 <head>
@@ -9,7 +11,7 @@
 	//페이지가 로드되면 실행한다.
 	$(document).ready( function() {
 
-		$("#header").load("header.html");
+		$("#header").load("header.php");
 	});
 
 	</script>
@@ -24,13 +26,15 @@
 	<?
 			include './dbconn.php';
 			
-			$userPrm = 4;
+			$userId = $_SESSION['userid'];
 
 			//u_prm으로 id 찾기
-			$q_selId = "SELECT ID FROM USER_T WHERE U_PRM='".$userPrm."'";
-			$r_selId = mysqli_query($conn,$q_selId);
-			$rowId = mysqli_fetch_array($r_selId);
-			$userId = $rowId['ID'];
+			$q_selU_PRM = "SELECT U_PRM FROM USER_T WHERE ID='".$_SESSION['userid']."'";
+			$r_selU_PRM = mysqli_query($conn,$q_selU_PRM);
+			$rowU_PRM = mysqli_fetch_array($r_selU_PRM);
+			$userPrm = $rowU_PRM['U_PRM'];
+
+			echo ($userPrm);
 
 			//u_prm으로 후원 정보 찾기 from d_date_t
 			$q_selD = "SELECT S_PRM,D_MONEY  FROM D_INFO_T WHERE U_PRM='".$userPrm."'";
@@ -41,7 +45,7 @@
 			if(!$row_selD){
 
 				echo "
-					<p>'".$userId."'님 후원 기록이 없습니다.</p>
+					<p>'".$userId."'님의 후원 기록이 없습니다.</p>
 					<button><a href='./main_page.html'>후원하러 가기</a></button>
 				";
 				return;
@@ -51,7 +55,7 @@
 
 				echo "
 
-				<p id='userId'>'".$userId."'님</p>
+				<p id='userId'>'".$userId."'님이 현재 후원 중인 공연</p>
 				<table>
 					<tr id='tr1'>
 						<td>index</td>
@@ -69,18 +73,17 @@
 
 			
 			
-			//u_prm이용해서 post_t에서 공연타이틀 찾기
+			//get info of column using u_prm
 			$q_Sinfo = "SELECT P.S_PRM,S_TITLE,S_GOALSUM,D.D_MONEY as D_MONEY FROM POST_T AS P LEFT JOIN D_INFO_T AS D ON P.S_PRM = D.S_PRM WHERE D.U_PRM='".$userPrm."'";
 			$r_Sinfo = mysqli_query($conn, $q_Sinfo);
 
 
 			while($row_Sinfo=mysqli_fetch_array($r_Sinfo)){
 
-				$sprm = $row_Sinfo['POST_T.S_PRM'];
 				$title = $row_Sinfo['S_TITLE'];
 				$dMoney = $row_Sinfo['D_MONEY'];
 
-				//while문 끝내기 위한 count쿼리문
+				//get $cnt to finish while()
 				$q_cnt = "SELECT U_PRM, COUNT(D_PRM) AS CntS FROM D_INFO_T WHERE U_PRM='".$userPrm."' GROUP BY U_PRM";
 				$r_cnt = mysqli_query($conn,$q_cnt);
 				$row_cnt=mysqli_fetch_array($r_cnt);
@@ -101,7 +104,7 @@
 						<td>$dMoney</td>
 						<td>";
 
-
+					//query for get reward
 					$q_reward = "SELECT D_REWARD FROM REWARD_T WHERE D_MONEY<='".$row_Sinfo['D_MONEY']."';";
 					$r_reward = mysqli_query($conn,$q_reward);
 

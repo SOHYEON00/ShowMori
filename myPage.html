@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <html>
 <!-- print header -->
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -7,7 +10,7 @@
 //페이지가 로드되면 실행한다.
 $(document).ready( function() {
 
-	$("#header").load("header.html");
+	$("#header").load("header.php");
 });
 
 </script>
@@ -20,16 +23,20 @@ $(document).ready( function() {
 		<img src="./IMG/profile.jpg" id="userImg" />
 
 		 <!--print USER ID -->
-		<a id="userId">APPLE</a><a id="n">님 </a>
-		  
+		<a id="userId">
+			<?php
+
+			echo $_SESSION['userid'];
+
+		?></a><a id="n">님 </a>
 
 		<hr style="top: 90px;"><hr style="top:590px;" />
 
 		<div id="div_content">
 			<P class="content"><a href="./printDonation.php">후원 내역</a></P>
-			<P class="content"><a href="./myPage_funding.html">펀딩 현황</a></P>
+			<P class="content"><a href="./printFunding.php">펀딩 현황</a></P>
 			<P class="content"><a href="./myInfo.html">내 정보변경</a></P>
-			<P class="content"><a href="./main_page.html">로그아웃</a></P>
+			<P class="content"><a href="./logout.php">로그아웃</a></P>
 		</div>
 
 	</div>

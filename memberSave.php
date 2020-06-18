@@ -4,10 +4,10 @@
 <?php
   include './dbconn.php';
 
-  $id=$_POST['user_id'];
-  $password=($_POST['user_password']);
-  $name=$_POST['user_name'];
-  $phone=$_POST['user_phone'];
+  $id=$_POST['id'];
+  $password=($_POST['pass']);
+  $name=$_POST['name'];
+  $phone=$_POST['phone'];
 
   $sql = "insert into user_t (id, pw, u_name, u_phone)";
   $sql = $sql. "values('$id', '$password', '$name', '$phone')";
