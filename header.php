@@ -3,7 +3,7 @@
  ?>
 <html>
 	<head>
-		<link rel="stylesheet" href="./header.css?after"/>
+		<link rel="stylesheet" href="./header.css"/>
 	</head>
 	<body>
 	<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Do+Hyeon&family=Nanum+Brush+Script&family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
@@ -12,15 +12,17 @@
 	<div id="header">
 	<h1 class="title"><a href="./main_page.html">SHOW-MORI </a></h1>
 
-	<span id="search">
-	<button type="button" ><img src="./IMG/search.jpg" width="40" height="40" ></button>
-	<input type="text" id="search_text">
-	</span>
+	<form method="POST" action="search.php">
+		<span id="search">
+		<input type="text" id="search_text" name="srchTxt">
+		<button type="submit" ><img src="./IMG/search.jpg" width="40" height="40" ></button>
+		</span>
+	</form>
 
 	<button type="button" name="post" id="btn_post" onClick="location.href='writepostpage.html'">공연 게시하기</button>
 
 
-		<span class="login">
+		<span id="login">
 			<?php
 			 	if(!isset($_SESSION['userid'])){
 			?>

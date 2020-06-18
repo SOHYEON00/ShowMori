@@ -1,3 +1,6 @@
+<?
+session_start();
+?>
 <html>
 <head>
 <!-- print header -->
@@ -10,6 +13,7 @@
 
     $("#header").load("header.php");
   });
+
 
   function chkForm(){
       var title = post_form.title;
@@ -29,6 +33,7 @@
         alert("정보를 모두 입력해주세요. ");
         return;     
       }
+        
       
         if(goalSum.value<50000){
           alert("목표금액은 최소 50,000입니다.");

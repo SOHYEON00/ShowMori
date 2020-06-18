@@ -1,5 +1,9 @@
+
 <?
         include './dbconn.php';
+        session_start();
+
+        $userid=$_SESSION['userid'];
 
         $title = $_GET['title'];
         $fileSynop = $_GET['fileSynop'];
@@ -64,18 +68,32 @@
                 </head>
                 <body>
                 <div id="header"></div>
+                
+
+            </html>';
+
+                return;
+        }
+
+        $q_chkT = "SELECT s_title from post_t ;";
+        $r_chkT = mysqli_query($conn, $q_chkT);
+
+        while($row_chkT=mysqli_fetch_array($r_chkT)){
+            if($title==$row_chkT['s_title']){ 
+                echo'
                 <div id="getBody" >
                     <p id="getP">같은 이름을 가진 공연이 존재합니다.
                     <h4>공연 게시하기</h4>를 눌러주세요.</p>
                      <button type="button" name="post" id="getShowInfo_btn" <a href="./wrtiepostpage.html">다시 포스트하기</a></button>
-                </div> 
-
-            </html>';
-            return;
+                </div> ';
+            }
         }
-        
+        $q_chkUprm = "SELECT u_prm from user_t where id='".$userid."';";
+        $r_chkUprm = mysqli_query($conn,$q_chkUprm);
+        $row_chkUprm = mysqli_fetch_array($r_chkUprm);
+
         //insert data into POST_T from wrtiepostpage.html        
-        $q_inPost = "INSERT INTO POST_T(U_PRM, S_POSTER,S_SYNOP,S_TITLE,S_DEADLINE,START_DAY,LAST_DAY,S_GOALSUM ) VALUES(1,'".$filePoster."','".$fileSynop."','".$title."','".$deadLine."','".$startDate."','".$lastDate."','".$goalSum."'); ";
+        $q_inPost = "INSERT INTO POST_T(U_PRM, S_POSTER,S_SYNOP,S_TITLE,S_DEADLINE,START_DAY,LAST_DAY,S_GOALSUM ) VALUES('".$row_chkUprm['u_prm']."','".$filePoster."','".$fileSynop."','".$title."','".$deadLine."','".$startDate."','".$lastDate."','".$goalSum."'); ";
             $r_insert = mysqli_query($conn,$q_inPost);
 
         //새로 넣은 글의 정보 select

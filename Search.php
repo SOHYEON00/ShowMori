@@ -56,8 +56,8 @@ $(document).ready( function() {
 			echo"
 				<tr>
 				<td>
-				<a href='./s_info_page.html'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
-				<a href='./s_info_page.html'><p id='s_title'>$title</p></a>
+				<a href='./s_info_page.php'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
+				<a href='./s_info_page.php'><p id='s_title'>$title</p></a>
 				<p class='t_content'>$leftSum 남음
 					&nbsp;&nbsp;
 					$percentage %</a>
@@ -72,8 +72,8 @@ $(document).ready( function() {
 		}
 		 else if($cnt%4==0){
 			echo"<td>
-				<a href='./s_info_page.html'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
-				<a href='./s_info_page.html'><p id='s_title'>$title</p></a>
+				<a href='./s_info_page.php'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
+				<a href='./s_info_page.php'><p id='s_title'>$title</p></a>
 				<p class='t_content'>$leftSum 남음
 					&nbsp;&nbsp;
 					$percentage %</a>
@@ -88,8 +88,8 @@ $(document).ready( function() {
 		}
 		else{
 			echo"<td>
-				<a href='./s_info_page.html'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
-				<a href='./s_info_page.html'><p id='s_title'>$title</p></a>
+				<a href='./s_info_page.php'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
+				<a href='./s_info_page.php'><p id='s_title'>$title</p></a>
 				<p class='t_content'>$leftSum 남음
 					&nbsp;&nbsp;
 					$percentage %</a>
