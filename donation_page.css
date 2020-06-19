@@ -8,14 +8,14 @@ body{
 	color:#A6A6A6;
 }
 
-#body_form{
+/*#body_form{
 	border: 1px solid #D9D9D9;
 	position:relative;
 	margin:0 auto;
-	top:10%;
+	top:30%;
 	width:60%;
 	height: 40%;
-}
+}*/
 #showInfo{
     position: absolute;
     left: 5%;

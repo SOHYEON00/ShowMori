@@ -1,4 +1,4 @@
-<!--  -마이페이지-펀딩내역 화면 및 처리->
+<!--  -마이페이지-펀딩내역 화면 및 처리-->
 <?
 session_start();
 ?>
@@ -17,7 +17,7 @@ session_start();
 
 	</script>
 
-	<link rel="stylesheet" href="./myPage_donation.css"/>
+	<link rel="stylesheet" href="./myPage_donation.css?after"/>
 </head>
 
 <body>
@@ -65,7 +65,12 @@ session_start();
 				$deadline = $row_selF['S_DEADLINE'];
 
 				echo"
+				<form name='do_form' method='GET' action='./editFunding.php'>
 					<table>
+					<input type='hidden' name='s_prm' value='".$show_prm."'/>
+					<input type='submit' name='in_btn' class='btn2' value='수정'>
+
+							<input type='submit' name='in_btn' class='btn2' value='삭제'>
 					<p class='show_title'>$title</p>
 					<tr id='tr1'>
 						<td>index</td>
@@ -75,8 +80,7 @@ session_start();
 						<td>아이디</td>
 						<td>후원 금액</td>
 						<td>회원 전화번호</td>
-						<td>글 수정</td>
-						<td>글 삭제</td>
+						
 					</tr>
 				";
 
@@ -115,25 +119,22 @@ session_start();
 						<td>$u_id</td>
 						<td>$u_money</td>
 						<td>$u_pnum</td>
-						<td><button class='btn'><a href='./editFunding.php'>수정</a></button></td>
-						<td><button class='btn'><a href='./deleteFunding.php?'>삭제</a></button></td>
+						
 						</tr>
 					";
 					$index++;
 					// if($index==$row_cnt2['CNT']){return;}
 				}
-				echo "</table> <br>";
+				echo "</table> <br></form>";
 			}
 			/*
 				while()
 				{
 					테이블, 첫 tr 출력 /유저가 올린 포스트 개수만큼 나와야 함.
 					필요한 것 : u_prm이 올린 포스트 정보(s_title,s_deadline,s_goalsum)
-
 					while()
 					{
 						각 테이블 당 후원한 사람들 + 게시글 정보 출력
-
 					}
 				}
 			*/

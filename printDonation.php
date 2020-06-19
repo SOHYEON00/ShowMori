@@ -18,7 +18,7 @@ session_start();
 
 	</script>
 
-	<link rel="stylesheet" href="./myPage_donation.css"/>
+	<link rel="stylesheet" href="./myPage_donation.css?after"/>
 </head>
 
 <body>
@@ -29,6 +29,8 @@ session_start();
 			include './dbconn.php';
 			
 			$userId = $_SESSION['userid'];
+			$editDonation = './editDonation.php';
+			$deleteDonation = './deleteDonation.php';
 
 			//u_prm으로 id 찾기
 			$q_selU_PRM = "SELECT U_PRM FROM USER_T WHERE ID='".$_SESSION['userid']."'";
@@ -36,7 +38,6 @@ session_start();
 			$rowU_PRM = mysqli_fetch_array($r_selU_PRM);
 			$userPrm = $rowU_PRM['U_PRM'];
 
-			echo ($userPrm);
 
 			//u_prm으로 후원 정보 찾기 from d_date_t
 			$q_selD = "SELECT S_PRM,D_MONEY  FROM D_INFO_T WHERE U_PRM='".$userPrm."'";
@@ -56,7 +57,7 @@ session_start();
 		            background-color: #EAEAEA;
 		            margin: 0 auto;
 		            text-align: center;
-		        }
+		        }	
 		        #contents span{
 		            font-family:"Nanum Brush Script";
 		            font-size:30px;
@@ -95,6 +96,7 @@ session_start();
 				echo "
 
 				<p id='userId'>'".$userId."'님이 현재 후원 중인 공연</p>
+				<form name='do_form' method='GET' action='./editDonation.php'>
 				<table>
 					<tr id='tr1'>
 						<td>index</td>
@@ -113,14 +115,16 @@ session_start();
 			
 			
 			//get info of column using u_prm
-			$q_Sinfo = "SELECT P.S_PRM,S_TITLE,S_GOALSUM,D.D_MONEY as D_MONEY FROM POST_T AS P LEFT JOIN D_INFO_T AS D ON P.S_PRM = D.S_PRM WHERE D.U_PRM='".$userPrm."'";
+			$q_Sinfo = "SELECT P.S_PRM as SPRM,S_TITLE,S_GOALSUM,D.D_MONEY as D_MONEY FROM POST_T AS P LEFT JOIN D_INFO_T AS D ON P.S_PRM = D.S_PRM WHERE D.U_PRM='".$userPrm."'";
 			$r_Sinfo = mysqli_query($conn, $q_Sinfo);
 
 
 			while($row_Sinfo=mysqli_fetch_array($r_Sinfo)){
 
+				$sPrm = $row_Sinfo['SPRM'];
 				$title = $row_Sinfo['S_TITLE'];
 				$dMoney = $row_Sinfo['D_MONEY'];
+
 
 				//get $cnt to finish while()
 				$q_cnt = "SELECT U_PRM, COUNT(D_PRM) AS CntS FROM D_INFO_T WHERE U_PRM='".$userPrm."' GROUP BY U_PRM";
@@ -133,11 +137,11 @@ session_start();
 
 				$percentage =round($rowSumMoney['sum']/$row_Sinfo['S_GOALSUM'],2);
 
-				
 
 				echo"
 					<tr>
 						<td>$index</td>
+						<input type='hidden' name='s_prm' value='".$sPrm."'/>
 						<td>$title</td>
 						<td>$percentage %</td>
 						<td>$dMoney</td>
@@ -156,8 +160,9 @@ session_start();
 
 					echo"		
 							</td>
-							<td><button class='btn'><a href='./editDonation.php'>수정</a></button></td>
-							<td><button class='btn'><a href='./deleteDonation.php'>삭제</a></button></td>
+							<td><input type='submit' name='in_btn' class='btn' value='수정'></td>
+
+							<td><input type='submit' name='in_btn' class='btn' value='삭제'></td>
 						</tr>";
 							
 						$index++;
@@ -165,7 +170,7 @@ session_start();
 					if($index==$row_cnt['CntS']){ return;}
 			}		
 
-			echo "</table>";	
+			echo "</table></form>";	
 			mysqli_close($conn);
 		?>
 	</table>

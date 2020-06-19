@@ -12,68 +12,7 @@
         $lastDate = $_GET['lastDate'];
         $deadLine = $_GET['deadLine'];
         $goalSum = $_GET['goalSum'];
-        /*
-        1. DATEDIFF(날짜1,날짜2); //날짜1-날짜2
-        2. q_selS_prm 으로 해당 s_prm찾아서 1번 실행.
-        3. q_inPost하기 전에 같은 이름의 공연이 있는지 검색
-        */
-
-        $q_chk = "SELECT S_PRM FROM POST_T WHERE S_TITLE = '".$title."'";
-        $r_chk = mysqli_query($conn,$q_chk);
- 
-        if($r_chk==NULL){
-            echo '
-            <html>
-                <head>
-                <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-                <script type="text/javascript">
-                //페이지가 로드되면 실행한다.
-                $(document).ready( function() {
-                    $("#header").load("header.html");
-                });
-                </script>
-                <style>
-                @import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&t&family=Nanum+Gothic:wght@800&display=swap");
-                #getBody{
-                    position: relative;
-                    width:600px;
-                    height:100px;
-                    top: 30%;
-                    background-color: #EAEAEA;
-                    margin: 0 auto;
-                    text-align: center;
-                }
-                #getBody p{
-                    font-size: 20px;
-                    position: relative;
-                    top: 30px;
-                }
-                #getBody h4{
-                    display:inline;
-                    font-family: "Nanum Brush Script";
-                    font-size:30px;
-                }
-                #getShowInfo_btn{
-                    position:relative;
-                    top:110%;
-                    margin:0 auto;
-                    background-color: #F96B6B;
-                    border-radius: 12px;
-                    font-size:18px;
-                    color:white;
-                    border: 10px;
-                    height: 35px;
-                }
-                </style>
-                </head>
-                <body>
-                <div id="header"></div>
-                
-
-            </html>';
-
-                return;
-        }
+     
 
         $q_chkT = "SELECT s_title from post_t ;";
         $r_chkT = mysqli_query($conn, $q_chkT);
