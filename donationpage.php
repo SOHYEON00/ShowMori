@@ -7,7 +7,7 @@ include './dbconn.php';
 <head>
 <!-- print header -->
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <link rel="stylesheet" href="./donation_page.css"/>
+  <link rel="stylesheet" href="./donation_page.css?after"/>
   <script type="text/javascript">
 
   //페이지가 로드되면 실행한다.
@@ -16,30 +16,6 @@ include './dbconn.php';
     $("#header").load("header.php");
   });
 
-//   function chkDonation(){
-
-//   	var date = form_do.bookDate;
-//   	var sDate = form_do.in_sDate;
-//   	var lDate = form_do.in_lDate;
-//   	var title = form_do.chk_title;
-//   	var money = form_do.sel_money;
-
-//   	var dateS = sDate.value;
-//     var dateL = lDate.value;
-//     var dateD = date.value; //0000-00-00형태
-
-//     if(!(dateD)){
-//     	alert("예약날짜를 선택해주세요.");
-//     	document.form_do.bookDate.focus();
-//     	return;
-//     }
-
-//     if((dateD)<(dateS) || (dateD)>(dateL)){
-//     	alert("예약날짜는 아래의 예약가능날짜 이외에 선택이 불가합니다..");
-//     	document.form_do.bookDate.focus();
-//     	return;
-//     }
-// }
   </script>
 </head>
 <body>
@@ -122,13 +98,8 @@ include './dbconn.php';
 
 
 	echo '
-		<style>
-			form{
-				position:relative;
-				top:20%;
-			}
-		</style>
-		<form name="form_do" method="GET" action="confirm_don.php">
+	
+		<form name="form_do" id="body_form" method="GET" action="confirm_don.php">
 	    <div id="showInfo">
 	   
 	      <p class="title">SUPPORT informatioin</p>
@@ -161,29 +132,31 @@ include './dbconn.php';
 	        <td><input type="date" id="bookDate" name="bookDate" required></td>
 	       	<td><input type="hidden" name="in_sDate" value="'.$sDate.'"></td>
 	        <td><input type="hidden" name="in_lDate" value="'.$lDate.'"></td>
-	     <tr>
-			<td>본 공연은 아래의 날짜 중에서 관람 가능합니다.</td></tr>
+	   
+			<p id="intro">본 공연은 아래의 날짜 중에서 관람 가능합니다.</p>
+			<div id="day_div">
 	        ';
 
 	    $q_date = "SELECT DAY FROM S_DATE_T WHERE S_PRM='".$sPrm."';";
 		$r_date = mysqli_query($conn,$q_date);	
 		while($row_date=mysqli_fetch_array($r_date)){
-			echo"<tr><td>'".$row_date['DAY']."'</td></tr> ";
+			echo"<p class='day'>'".$row_date['DAY']."'</p> ";
 		}
 
-		echo '</tr>
+		echo '</div>
 			</table>
 			</div>
 	  	 	<div id="supportInfo">
 			    	<p class="title">안내 문구</p>
+			    	<hr style="border-top: 1px solid #D9D9D9;" />
 			    	<p class="c_confirm"> -티켓은 1장 예약됩니다.</p>
 			    	<p class="c_confirm"> -공연 관련 안내사항은 공연측에 문의바랍니다.</p>
 			     </div>
 		     
 		    
 			    </div>
-			   <input type="button" onClick="location.href=(main_page.html)" id="post_btn" value="취소" />
-			    <input type="submit" id="post_btn" value="확인" />
+			   <button class="post_btn"><a href="./main_page.html">취소</a> </button>
+			    <input type="submit" class="post_btn"  value="확인" />
 
 			  </form>';
 		  mysqli_close($conn);	  
