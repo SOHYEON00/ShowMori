@@ -3,7 +3,7 @@
  ?>
 <html>
 	<head>
-		<link rel="stylesheet" href="./header.css"/>
+		<link rel="stylesheet" href="./header.css?after"/>
 	</head>
 	<body>
 	<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Do+Hyeon&family=Nanum+Brush+Script&family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">

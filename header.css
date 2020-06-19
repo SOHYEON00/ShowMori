@@ -38,8 +38,8 @@ h1.title{
 	
 }
 
-a:hover{
-	color:#7F7F7F;
+#login a:hover{
+	color:red;
 }
 button{
 	border:none;

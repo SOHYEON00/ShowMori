@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  ?>
+
 <html>
 <!-- print header -->
 <head>
@@ -12,6 +16,14 @@
     $("#header").load("header.php");
   });
 
+   function chk_reward(){
+
+    var sel = document.getElementById("reward");
+    var s_value= sel.value;
+
+  window.open("check_reward.php?s_value="+s_value,"리워드확인","left=200, top:200, width:20, height:10, scrollbars=no,resizeble=yes");
+ }
+
   </script>
 </head>
 
@@ -19,63 +31,78 @@
   <div id="header"></div>
       <!-- <font color="BLACK" SIZE="6"><p align="center">SHOW-Mori</p></font> -->
       <!-- <p align="center"><IMG src="line.jpg" width=1000 height=5></IMG></p> -->
-
-  <div id="postbody">
-      <?php
-            include './dbconn.php';
-
-            $title = $_GET['title'];
-
-   //           $qSumMoney = "SELECT S_PRM, sum(d_money) as sum from d_info_t WHERE S_PRM='".$show_p."';";
-      // $rSumMoney = mysqli_query($conn,$qSumMoney);
-      // $rowSumMoney = mysqli_fetch_array($rSumMoney);
-
-      // $qInfo = "SELECT S_TITLE,S_POSTER,S_GOALSUM,S_DEADLINE,S_PRM from post_t WHERE S_PRM='".$show_p."'";
-      // $rPoster = mysqli_query($conn,$qInfo);
-      // $row=mysqli_fetch_array($rPoster);
-      // $title = $row['S_TITLE'];
+  <div id="content">
+    <?
+    include './dbconn.php';
+    $sinfonum = $_GET['snum'];
+    $sInfo = "SELECT S_TITLE,S_POSTER,S_SYNOP,S_GOALSUM,S_DEADLINE,S_PRM from post_t WHERE S_PRM='".$sinfonum."';";
+    $s_info = mysqli_query($conn,$sInfo);
+    $nDate = date('Y-m-d');
 
 
 
-    
-       echo' <div class="title">"'.$title .'"</div>
-        <!-- <p style="font-family:musical;">굿닥터</p> -->
+    while($row = mysqli_fetch_array($s_info)){
+      $title = $row['S_TITLE'];
+      $poster = $row['S_POSTER'];
+      $leftDate = intval((strtotime($row['S_DEADLINE'])-strtotime($nDate)) / 86400);
+      $deadLine = $row['S_DEADLINE'];
+      $goalSum = $row['S_GOALSUM'];
+      $synop = $row['S_SYNOP'];
+      $leftSum = ($row['S_GOALSUM']-$row2['sum']);
 
-        <div class="img_post">
-          <img src="./IMG/굿닥터.jpg" width=300 height=450/>
+      $mInfo = "SELECT sum(D_MONEY) as sum FROM d_info_t WHERE S_PRM='".$sinfonum."';";
+      $s_info2 = mysqli_query($conn,$mInfo);
+      $row2 = mysqli_fetch_array($s_info2);
+
+        $donatedSum = $row2['sum'];
+        $percentage = round($row2['sum']/$row['S_GOALSUM'],2);
+      }
+
+
+?>
+    <div id='postbody'>
+        <div class='title'>
+          <? echo $title ?>
         </div>
-
-        <div class="posttext">
-          <p class="p1">모인금액       <span class="span1">
-
-      </span>원</p>
-          
-          <p class="p1">남은시간       <span class="span1">42</span>일</p>
-          <p class="p1">후원자        <span class="span1">10</span>명</p>
-          <p class="rectangle">
-            <span class="span1">펀딩 진행 중</span><br>
-            <br>2020년 6월 22일까지 목표금액인 500,000원이 모여야 펀딩이 완성됩니다.<br>
+        <div class='img_post'>
+          <?php echo"
+          <img src='./data/IMG/".$poster."' width=400;/>
+          "?>
+        </div>
+        <div class='posttext'>
+          <p>모인금액 <span>   &nbsp; <?=$donatedSum?>    &nbsp; </span>원</p>
+          <p>남은시간 <span>    &nbsp; <?=$leftDate?>    &nbsp; </span>일</p>
+          <p>달성률        <span>    &nbsp; <?=$percentage?>    &nbsp; </span>%</p>
+          <p class='rectangle'>
+            <span>펀딩 진행중</span><br>
+            <br> <?=$deadLine?> 까지 목표금액인 <?=$goalSum?> 원이 모여야 펀딩이 완성됩니다.<br>
             후원 금액과 리워드는 하단을 참조해 주세요.<br>
-          </p>';
-          ?>
+          </p>
           <br>
-          <form method="POST" action="./donation_page.php">
-            <select name="reward" class="select_reward">
-              <option value="reward1" selected>￦ 20,000</option>
-              <option value="reward2">￦ 30,000</option>
-              <option value="reward3">￦ 40,000</option>
-              <option value="reward4">￦ 50,000</option>
-              </select>
-            <input type="submit" value="후원하기" name="submit" class="submit_button">
+          <form method="POST" action="donationpage.php" >
+          <select name='reward' id="reward" class='select_reward'>
+            <option value='reward1' selected>￦ 20,000
+            <option value='reward2'>￦ 30,000
+            <option value='reward3'>￦ 40,000
+            <option value='reward4'>￦ 50,000
+            </select>
+          <input type='submit' value='후원하기' class='submit_button'>
+          <input type="button" value="리워드확인" name="btnReward"  onClick="chk_reward()"class="submit_button">
           </form>
         </div>
 
 
       </div>
-    <div class="img_synop">
-      <img src="./data/IMG/빨래 시놉.jpg" width=600 />
+    <div class='img_synop'>
+      <?php echo"
+        <img src='./data/IMG/".$synop."' width=600; />
+        "?>
     </div>
+<?
+  mysqli_close($conn);
+  ?>
 
+  </div>
 </body>
 
 </html>
