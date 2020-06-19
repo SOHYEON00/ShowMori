@@ -1,3 +1,5 @@
+<!-- 게시글 상세 내역 -->
+
 <?php
   session_start();
   ?>
@@ -42,6 +44,8 @@
 
 
     while($row = mysqli_fetch_array($s_info)){
+
+      $sprm = $row['S_PRM'];
       $title = $row['S_TITLE'];
       $poster = $row['S_POSTER'];
       $leftDate = intval((strtotime($row['S_DEADLINE'])-strtotime($nDate)) / 86400);
@@ -80,6 +84,7 @@
           </p>
           <br>
           <form method="POST" action="donationpage.php" >
+          <input type="hidden" name="sprm" value='<?echo ($sprm);?>'/>
           <select name='reward' id="reward" class='select_reward'>
             <option value='reward1' selected>￦ 20,000
             <option value='reward2'>￦ 30,000

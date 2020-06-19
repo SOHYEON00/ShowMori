@@ -1,3 +1,5 @@
+<!-- 후원 페이지 -->
+
 <?
 session_start();
 include './dbconn.php';
@@ -30,7 +32,6 @@ include './dbconn.php';
             position: relative;
             width:600px;
             height:100px;
-            top: 30%;
             background-color: #EAEAEA;
             margin: 0 auto;
             text-align: center;
@@ -68,8 +69,8 @@ include './dbconn.php';
 	}
 
 	$get_value=$_POST['reward'];
-
-	$sPrm = 17;
+	$sPrm =$_POST['sprm'];
+	echo ($sprm);
 	$money=0;
 	
 	//string으로 받은 form_value값 int로 바꾸는 switch문
@@ -140,7 +141,7 @@ include './dbconn.php';
 	    $q_date = "SELECT DAY FROM S_DATE_T WHERE S_PRM='".$sPrm."';";
 		$r_date = mysqli_query($conn,$q_date);	
 		while($row_date=mysqli_fetch_array($r_date)){
-			echo"<p class='day'>'".$row_date['DAY']."'</p> ";
+			echo"<span class='day'>'".$row_date['DAY']."' || </span> ";
 		}
 
 		echo '</div>

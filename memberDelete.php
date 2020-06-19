@@ -1,33 +1,23 @@
-<!-- 로그인 처리 -->
+<!-- 회원 탈퇴 화면 -->
 
-<?
-session_start();
-include "./dbconn.php";
-
-$id = $_REQUEST["id"];
-$pw = $_REQUEST["pass"];
-
-
-$sql = "SELECT id,pw FROM user_t WHERE id='$id' AND pw='$pw'";
-$res = $conn->query($sql);
-$row = $res->fetch_array(MYSQLI_ASSOC);
-
-
-
+<?php
+  session_start();
 ?>
 
+<!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta charset="UTF-8">
+  <!-- print header -->
   <link rel="stylesheet" type="text/css" href="./login.css">
   <link rel="stylesheet" type="text/css" href="./post.css">
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
   <script type="text/javascript">
-  $(document).ready( function() {
+    //페이지가 로드되면 실행한다.
+    $(document).ready( function() {
 
-    $("#header").load("header.php");
-  });
+      $("#header").load("header.php");
+    });
   </script>
 
   <style>
@@ -36,7 +26,7 @@ $row = $res->fetch_array(MYSQLI_ASSOC);
      position: relative;
      width:600px;
      height:100px;
-     top: 30%;
+     top: 100px;
      background-color: #EAEAEA;
      margin: 0 auto;
      text-align: center;
@@ -49,7 +39,7 @@ $row = $res->fetch_array(MYSQLI_ASSOC);
      top: 40%;
      left:30%;
  }
- #getShowInfo_btn{
+ .getShowInfo_btn{
      position:relative;
      top:110%;
      margin:0 auto;
@@ -68,29 +58,9 @@ $row = $res->fetch_array(MYSQLI_ASSOC);
 <body>
   <div id="header"></div>
   <p id="contents">
-  <?php
-  if($row){
-    $_SESSION['userid'] = $row['id'];
-    $_SESSION['userpass'] = $row['pass'];
-    $_SESSION['username'] = $row['name'];
-    $_SESSION['userphone'] = $row['phone'];
-    ?>
-    <span> <? echo $_SESSION['userid'] ?>님 안녕하세요.</span>
-    <button id="getShowInfo_btn"><a href="./main_page.html"> 메인 페이지로 가기 </a></button>
-    <?
-    exit;
-  }
-  else{
-     ?>
-      <script>
-      alert("로그인에 실패하였습니다");
-      history.back();
-      </script>
-      <?php
-    }
-      ?>
-
-  </p>
-
+    <span>회원 탈퇴 하시겠습니까?</span>
+    <button class="getShowInfo_btn"><a href="./main_page.html"> 취소하기 </a></button>
+    <button class="getShowInfo_btn"><a href="./memberDeleteform.php"> 탈퇴하기 </a></button>
+  </p> <!-- end of wrap_deletemember -->
 </body>
 </html>

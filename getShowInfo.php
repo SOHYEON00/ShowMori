@@ -1,4 +1,4 @@
-
+<!-- 포스트 업로드 처리 -->
 <?
         include './dbconn.php';
         session_start();

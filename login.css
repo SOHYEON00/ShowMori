@@ -1,52 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
 
-
+body{
+  height:90%;
+  width:100%;
+}
 #showmorilogin{
   position:relative;
   width:100%;
   top:150px;
-}
+  height:80%;
 
-.login_rectangle{
-  display:block;
-  width:400px;
-  height:400px;
-  padding:10px;
-  overflow:hidden;
-  text-align:left;
-  background:#EAEAEA;
-  border:1px solid gray;
-  position:absolute;
-  left:50%;
-  margin:0 0 0 -200px;
-}
-/*
-.signup_rectangle{
-  display:block;
-  width:400px;
-  height:450px;
-  padding:10px;
-  overflow:hidden;
-  test-align:left;
-  background:#EAEAEA;
-  border:1px solid gray;
-  position:absolute;
-  left:50%;
-  margin:0 0 0 -200px;
-}
-*/
-p{
-  font-family: 'Nanum Brush Script';
-}
-
-.login_title{
-  font-size:40px;
-}
-
-.alignmiddle{
-  font-family: 'Nanum Brush Script';
-  font-size:30px;
-  text-align:center;
 }
 
 #showmorilogin #signup_rectangle{
@@ -62,6 +25,34 @@ p{
   /*margin:0 0 0 -200px;*/
   margin-left:600px;
 }
+.login_rectangle{
+  display:block;
+  width:400px;
+  height:400px;
+  padding:10px;
+  overflow:hidden;
+  text-align:left;
+  background:#EAEAEA;
+  border:1px solid gray;
+  position:absolute;
+  left:50%;
+  margin:0 0 0 -200px;
+}
+
+p{
+  font-family: 'Nanum Brush Script';
+}
+
+.login_title{
+  font-size:40px;
+}
+
+.alignmiddle{
+  font-family: 'Nanum Brush Script';
+  font-size:30px;
+  text-align:center;
+}
+
 
 #showmorilogin #signup_rectangle #signup_form{
   margin-left:10px;

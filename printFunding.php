@@ -1,3 +1,4 @@
+<!--  -마이페이지-펀딩내역 화면 및 처리->
 <?
 session_start();
 ?>
@@ -114,8 +115,8 @@ session_start();
 						<td>$u_id</td>
 						<td>$u_money</td>
 						<td>$u_pnum</td>
-						<td><button class='btn'><a href=''>수정</a></button></td>
-						<td><button class='btn'><a href=''>삭제</a></button></td>
+						<td><button class='btn'><a href='./editFunding.php'>수정</a></button></td>
+						<td><button class='btn'><a href='./deleteFunding.php?'>삭제</a></button></td>
 						</tr>
 					";
 					$index++;

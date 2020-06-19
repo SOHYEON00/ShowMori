@@ -1,3 +1,5 @@
+<!-- 메인페이지 게시글 출력 처리 -->
+
 <?
 session_start();
 include './dbconn.php';

@@ -1,3 +1,4 @@
+<!-- INSERT INTO D_INFO_t -->
 <?
 session_start();
 include './dbconn.php';
@@ -23,13 +24,29 @@ $q_insert = "INSERT INTO D_INFO_T(S_PRM,U_PRM,D_MONEY,D_DATE) VALUES('".$sprm."'
 $r_insert = mysqli_query($conn,$q_insert);
 
 		echo'
+        <html>
+        <head>
+        <!-- print header -->
+          <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+          <link rel="stylesheet" href="./donation_page.css?after"/>
+          <script type="text/javascript">
+
+          //페이지가 로드되면 실행한다.
+          $(document).ready( function() {
+
+            $("#header").load("header.php");
+          });
+
+          </script>
+        </head>
+        <body>
 			<style>
         @import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&t&family=Nanum+Gothic:wght@800&display=swap");
      	#contents{
             position: relative;
             width:600px;
             height:100px;
-            top: 30%;
+            top: 10%;
             background-color: #EAEAEA;
             margin: 0 auto;
             text-align: center;
@@ -62,6 +79,8 @@ $r_insert = mysqli_query($conn,$q_insert);
             <span >후원에 성공했습니다.</span>
             <button id="getShowInfo_btn"><a href="./main_page.html"> 다른 포스트 둘러보러 가기</a></button>  
         </p>
+        </body>
+        </html>
 		';
 
 ?>

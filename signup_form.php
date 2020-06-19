@@ -1,3 +1,4 @@
+<!-- 회원가입 페이지 -->
 <?php
   session_start();
   ?>
@@ -23,18 +24,30 @@
     }
     function check_input()
     {
-      if(!document.member_form.phone){
-        alert("휴대폰 번호를 입력하세요");
-        document.member_form.phone.focus();
-        return;
+      if(!document.member_form.id.value){
+        alert("아이디를 입력해주세요");
+        document.member_form.id.focus();
+        document.member_form.id.select();
       }
-      if(document.member_form.pass.value != document.member_form.pass_confirm.value)
+      else if(!document.member_form.pass.value){
+        alert("비밀번호를 입력해주세요");
+        document.member_form.pass.focus();
+        document.member_form.pass.select();
+      }
+      else if(!document.member_form.name.value){
+        alert("이름을 입력해주세요");
+        document.member_form.name.focus();
+        document.member_form.name.select();
+      }
+      else if(document.member_form.pass.value != document.member_form.pass_confirm.value)
       {
           alert("비밀번호가 일치하지 않습니다. \n다시입력해주세요");
           document.member_form.pass.focus();
           document.member_form.pass.select();
       }
-      document.member_form.submit()
+      else{
+        document.member_form.submit();
+      }
     }
 
     function reset_form() //취소하기 버튼 눌렀을 때

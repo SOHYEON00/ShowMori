@@ -1,3 +1,5 @@
+<!-- 마이페이지-후원내역 화면 및 처리 -->
+
 <?php 
 session_start();
  ?>
@@ -44,10 +46,47 @@ session_start();
 
 			if(!$row_selD){
 
-				echo "
-					<p>'".$userId."'님의 후원 기록이 없습니다.</p>
-					<button><a href='./main_page.html'>후원하러 가기</a></button>
-				";
+				echo'
+					<style>
+		        @import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&t&family=Nanum+Gothic:wght@800&display=swap");
+		     	#contents{
+		            position: relative;
+		            width:600px;
+		            height:100px;
+		            background-color: #EAEAEA;
+		            margin: 0 auto;
+		            text-align: center;
+		        }
+		        #contents span{
+		            font-family:"Nanum Brush Script";
+		            font-size:30px;
+		            padding: 0 10;
+		            position: absolute;
+		            top: 40%;
+		            left:30%;
+		        }
+		        #getShowInfo_btn{
+		            position:relative;
+		            top:110%;
+		            margin:0 auto;
+		            background-color: #F96B6B;
+		            border-radius: 12px;
+		            font-size:18px;
+		            color:white;
+		            border: 10px;
+		            height: 35px;
+		        }
+		        #contents a:visited{ color:white; }
+		        }
+		        </style>
+
+					<div id="header"></div>
+		        	<p id="contents">
+		            <span >"'.$userId.'"님의 후원 기록이 없습니다.</span>
+		            <button id="getShowInfo_btn"><a href="./main_page.html"> 후원하러가기</a></button>  
+		        </p>
+				';
+				
 				return;
 			}
 
@@ -117,8 +156,8 @@ session_start();
 
 					echo"		
 							</td>
-							<td><button class='btn'><a href=''>수정</a></button></td>
-							<td><button class='btn'><a href=''>삭제</a></button></td>
+							<td><button class='btn'><a href='./editDonation.php'>수정</a></button></td>
+							<td><button class='btn'><a href='./deleteDonation.php'>삭제</a></button></td>
 						</tr>";
 							
 						$index++;

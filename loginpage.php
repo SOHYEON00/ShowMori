@@ -1,3 +1,5 @@
+<!-- 로그인 화면 -->
+
 <?
   session_start();
 ?>
@@ -27,7 +29,7 @@ $(document).ready( function() {
       <br>
       <br>
       <form name="login_form" method="post" action="login_form.php">
-      <div class="login_rectangle">
+      <div id="login_rectangle">
       <CENTER><p class="login_title">로그인</p><br>
         <div id="login_form">
           <div id="login1">

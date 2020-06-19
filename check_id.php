@@ -1,3 +1,4 @@
+<!-- ID중복확인 -->
 <meta charset="UTF-8">
 <?php
   $id = $_REQUEST["id"]; //id값 변수로 받음

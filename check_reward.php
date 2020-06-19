@@ -1,4 +1,4 @@
-
+<!-- 리워드 프린트 -->
 <meta charset="UTF-8">
 <?
 	include './dbconn.php';
