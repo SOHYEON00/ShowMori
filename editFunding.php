@@ -47,6 +47,52 @@
 
 
 		if($func=='수정'){
+			echo '
+			<form method="GET" action="editContents_fund.php">
+			<input type="hidden" name="sprm" value="'.$sprm.'">
+			<input type="hidden" name="uprm" value="'.$uprm.'">
+
+			<style>
+		        @import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&t&family=Nanum+Gothic:wght@800&display=swap");
+		        #contents{
+		            position: relative;
+		            width:600px;
+		            height:100px;
+		            top:30%;
+		            background-color: #EAEAEA;
+		            margin: 0 auto;
+		            text-align: center;
+		        }
+		        #contents span{
+		            font-family:"Nanum Brush Script";
+		            font-size:30px;
+		            padding: 0 10;
+		            position: absolute;
+		            top: 40%;
+		            left:30%;
+		        }
+		        #getShowInfo_btn{
+		            position:relative;
+		            top:110%;
+		            margin:0 auto;
+		            background-color: #F96B6B;
+		            border-radius: 12px;
+		            font-size:18px;
+		            color:white;
+		            border: 10px;
+		            height: 35px;
+		        }
+		        #contents a:visited{ color:white; }
+		        </style>
+
+		      <div id="header"></div>
+		          <p id="contents">
+		            <span >정말 포스트 정보를 수정하시겠습니까?</span>
+		           <input id="getShowInfo_btn" type="submit" value="수정하기">
+		        </p>
+
+			</form>
+			';
 
 		}
 		if($func=='삭제'){
@@ -115,7 +161,7 @@
                 </html>';
 		}
 
-		
+		mysqli_close($conn);
 	?>
 	</div>
 </body>

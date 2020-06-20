@@ -90,6 +90,7 @@
               </div> <!--end of join2 -->
               <?php
             }
+            mysqli_close($conn);
             ?>
               <div class="clear"></div>
               <div id="button">

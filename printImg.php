@@ -10,10 +10,12 @@ include './dbconn.php';
    $rPoster = mysqli_query($conn,$qInfo);
    $nDate = date('Y-m-d');
    $cnt=1;
-
+   
+   
    while($row=mysqli_fetch_array($rPoster)){
       $title = $row['S_TITLE'];
       $show_p = $row['S_PRM'];
+      $cong ="";
 
       //GET SUM(D_MONEY) BY DONATION
       $qSumMoney = "SELECT S_PRM, sum(d_money) as sum from d_info_t WHERE S_PRM='".$show_p."';";
@@ -21,13 +23,17 @@ include './dbconn.php';
 
 
       $row2 = mysqli_fetch_array($rSumMoney);
-
+      if($row2==NULL) {echo "해당 공연의 후원정보가 없습니다.";}
 
       $leftSum = ($row['S_GOALSUM']-$row2['sum']);//goalsum - donated sum
       $leftDate = intval((strtotime($row['S_DEADLINE'])-strtotime($nDate)) / 86400);
       //deadline - today
 
-      $percentage =round($row2['sum']/$row['S_GOALSUM'],2);
+      
+      if($leftSum==0){ $cong="후원성공!";}
+
+
+      $percentage =round($row2['sum']/$row['S_GOALSUM'],2)*100;
 
       if($leftDate<=0){
          $qDet = "DELETE FROM D_INFO_T WHERE S_PRM='".$show_p."';";
@@ -46,7 +52,7 @@ include './dbconn.php';
                   <a href='./s_info_page.php'><p id='s_title' name='title'>$title</p></a>
 
                   <p class='t_content'>$leftSum 남음
-                     &nbsp;&nbsp;
+                     <a style='margin-left: 0;color: red;'>$cong</a>
                      $percentage %</a>
                   </p>
                   <p class='t_content'>마감
@@ -65,7 +71,7 @@ include './dbconn.php';
                   <a href='./s_info_page.php?snum=".$row['S_PRM']."'><img src='./data/IMG/".$row['S_POSTER']."'></a>
                   <a href='./s_info_page.php'><p id='s_title' name='print_title'>$title</p></a>
                   <p class='t_content'>$leftSum 남음
-                     &nbsp;&nbsp;
+                      <a style='margin-left: 0;color: red;'>$cong</a>
                      $percentage %</a>
                   </p>
                   <p class='t_content'>마감
@@ -84,7 +90,7 @@ include './dbconn.php';
                   <a href='./s_info_page.php?snum=".$row['S_PRM']."'><img src='./data/IMG/".$row['S_POSTER']."'></a>
                   <a href='./s_info_page.php'><p id='s_title' name='print_title'>$title</p></a>
                   <p class='t_content'>$leftSum 남음
-                     &nbsp;&nbsp;
+                      <a style='margin-left: 0;color: red;'>$cong</a>
                      $percentage %</a>
                   </p>
                   <p class='t_content'>마감

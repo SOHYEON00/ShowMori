@@ -82,5 +82,6 @@ $r_insert = mysqli_query($conn,$q_insert);
         </body>
         </html>
 		';
+        mysqli_close($conn);
 
 ?>

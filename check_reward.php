@@ -29,4 +29,5 @@
 	while($row_reward=mysqli_fetch_array($r_reward)){
 				echo"'".$row_reward['D_REWARD']."' ";
 	}
+	mysqli_close($conn);
 ?>

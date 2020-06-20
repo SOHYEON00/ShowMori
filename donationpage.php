@@ -9,7 +9,7 @@ include './dbconn.php';
 <head>
 <!-- print header -->
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <link rel="stylesheet" href="./donation_page.css?after"/>
+  <link rel="stylesheet" href="./donation_page.css"/>
   <script type="text/javascript">
 
   //페이지가 로드되면 실행한다.
@@ -133,7 +133,7 @@ include './dbconn.php';
 	        <td><input type="date" id="bookDate" name="bookDate" required></td>
 	       	<td><input type="hidden" name="in_sDate" value="'.$sDate.'"></td>
 	        <td><input type="hidden" name="in_lDate" value="'.$lDate.'"></td>
-	   
+	   		
 			<p id="intro">본 공연은 아래의 날짜 중에서 관람 가능합니다.</p>
 			<div id="day_div">
 	        ';

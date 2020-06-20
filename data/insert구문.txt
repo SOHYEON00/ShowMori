@@ -7,13 +7,13 @@ DELETE FROM USER_T;
 
 
 
-INSERT INTO reward_t VALUES (1,5000,"티켓");
-INSERT INTO reward_t VALUES (2,5000,"팜플렛");
-INSERT INTO reward_t VALUES (3,5000,"포스터");
-INSERT INTO reward_t VALUES (4,5000,"엽서");
-INSERT INTO reward_t VALUES (5,10000,"향초");
-INSERT INTO reward_t VALUES (6,15000,"기념사진 촬영");
-INSERT INTO reward_t VALUES (7,20000,"배우 손편지");
+INSERT INTO reward_t VALUES (1,20000,"티켓");
+INSERT INTO reward_t VALUES (2,20000,"팜플렛");
+INSERT INTO reward_t VALUES (3,20000,"포스터");
+INSERT INTO reward_t VALUES (4,20000,"엽서");
+INSERT INTO reward_t VALUES (5,30000,"향초");
+INSERT INTO reward_t VALUES (6,40000,"기념사진 촬영");
+INSERT INTO reward_t VALUES (7,50000,"배우 손편지");
 
 
 INSERT INTO user_t VALUES (1,"apple","apple","사과","010-0000-0000");

@@ -59,7 +59,7 @@
       $row2 = mysqli_fetch_array($s_info2);
 
         $donatedSum = $row2['sum'];
-        $percentage = round($row2['sum']/$row['S_GOALSUM'],2);
+        $percentage = round($row2['sum']/$row['S_GOALSUM'],2)*100;
       }
 
 

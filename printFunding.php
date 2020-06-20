@@ -41,11 +41,47 @@ session_start();
 			$row_chkIF=mysqli_fetch_array($r_chkIf);
 
 			if(!$row_chkIF){
+				echo'
+					<style>
+		        @import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&t&family=Nanum+Gothic:wght@800&display=swap");
+		     	#contents{
+		            position: relative;
+		            width:600px;
+		            height:100px;
+		            background-color: #EAEAEA;
+		            margin: 0 auto;
+		            text-align: center;
+		        }	
+		        #contents span{
+		            font-family:"Nanum Brush Script";
+		            font-size:30px;
+		            padding: 0 10;
+		            position: absolute;
+		            top: 40%;
+		            left:30%;
+		        }
+		        #getShowInfo_btn{
+		            position:relative;
+		            top:110%;
+		            margin:0 auto;
+		            background-color: #F96B6B;
+		            border-radius: 12px;
+		            font-size:18px;
+		            color:white;
+		            border: 10px;
+		            height: 35px;
+		        }
+		        #contents a:visited{ color:white; }
+		        }
+		        </style>
 
-				echo "
-					<p>'".$_SESSION['userid']."'님의 포스트 기록이 없습니다.</p>
-					<button><a href='./wrtiepostpage.html'>글 게시하러 가기</a></button>
-					";
+					<div id="header"></div>
+		        	<p id="contents">
+		            <span >"'.$_SESSION['userid'].'"님의 포스트 기록이 없습니다.</span>
+		            <button id="getShowInfo_btn"><a href="./writepostpage.html"> 글 게시하러 가기</a></button>  
+		        </p>
+				';
+		
 				return;
 			}
 			echo "
@@ -63,15 +99,21 @@ session_start();
 				$title = $row_selF['S_TITLE'];
 				$goalsum = $row_selF['S_GOALSUM'];
 				$deadline = $row_selF['S_DEADLINE'];
+				$cong ="";
+
+				$leftDate = intval((strtotime($deadline)-strtotime($nDate)) / 86400);//deadline - today
+				
 
 				echo"
 				<form name='do_form' method='GET' action='./editFunding.php'>
 					<table>
 					<input type='hidden' name='s_prm' value='".$show_prm."'/>
+
 					<input type='submit' name='in_btn' class='btn2' value='수정'>
 
 							<input type='submit' name='in_btn' class='btn2' value='삭제'>
 					<p class='show_title'>$title</p>
+					
 					<tr id='tr1'>
 						<td>index</td>
 						<td> 공연</td>
@@ -90,13 +132,25 @@ session_start();
 
 
 				//$percentage계산 위한 쿼리문
-				$qSumMoney = "SELECT sum(d_money) as sum from d_info_t WHERE S_PRM='".$row_table['S_PRM']."';";
+				$qSumMoney = "SELECT sum(d_money) as sum from d_info_t WHERE S_PRM='".$show_prm."';";
+
 				$rSumMoney = mysqli_query($conn,$qSumMoney);
 				$rowSumMoney = mysqli_fetch_array($rSumMoney);
-
-
 				
+				if($rowSumMoney==NULL){$rowSumMoney=0;}
+				$percentage =round($rowSumMoney['sum']/$goalsum,2)*100;
+				if($percentage==100){ $cong="후원성공!";}
+					
+
+				echo"<a style='margin-left: 0;
+			    position: relative;
+			    top: -25px;
+			    left: 23.5%;
+			    font-weight: bold;
+			    color: red;'>$cong</a>";
 				while($row_infoUser = mysqli_fetch_array($r_infoUser)){
+
+					
 
 					if(!$row_infoUser) {return;}
 					$u_id = $row_infoUser['ID'];
@@ -104,15 +158,17 @@ session_start();
 					$u_money = $row_infoUser['d_money'];
 
 					//$percentage계산 위한 쿼리문
-					$percentage =round($rowSumMoney['sum']/$goalsum,2);
-					$leftDate = intval((strtotime($deadline)-strtotime($nDate)) / 86400);//deadline - today
+
+					
 
 					echo "
+
 						<tr>
 						<td>$index</td>
 						<td>$title</td>
 						<td>$percentage %</td>
 						<td>D-$leftDate</td>
+						 
 					"; 
 
 					echo "

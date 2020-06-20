@@ -21,4 +21,5 @@
  }
   print "<center><input type=button value=창닫기 onClick='self.close()'></center>";
 
+  mysqli_close($conn);
   ?>

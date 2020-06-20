@@ -135,7 +135,7 @@ session_start();
 				$rSumMoney = mysqli_query($conn,$qSumMoney);
 				$rowSumMoney = mysqli_fetch_array($rSumMoney);
 
-				$percentage =round($rowSumMoney['sum']/$row_Sinfo['S_GOALSUM'],2);
+				$percentage =round($rowSumMoney['sum']/$row_Sinfo['S_GOALSUM'],2)*100;
 
 
 				echo"
