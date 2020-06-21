@@ -26,7 +26,7 @@
      position: relative;
      width:600px;
      height:100px;
-     top: 100px;
+     top: 300px;
      background-color: #EAEAEA;
      margin: 0 auto;
      text-align: center;

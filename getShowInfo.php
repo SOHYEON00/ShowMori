@@ -150,7 +150,7 @@
         <div id="header"></div>
         <p >
             <span >포스트 등록을 성공했습니다!</span>
-            <input type="button" onClick=location.href("s_info_page.html") value="내가 올린 글 보러 가기" id="getShowInfo_btn"></button>  
+            <button class="getShowInfo_btn"><a href="./main_page.html"> 내가 올린 글 보러가기 </a></button> 
         </p>    
         </body>
         </html>';

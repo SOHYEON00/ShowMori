@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <!-- print header -->
 <head>
-  <link rel="stylesheet" type="text/css" href="./login.css">
+  <link rel="stylesheet" type="text/css" href="./login.css?after">
   <link rel="stylesheet" type="text/css" href="./post.css">
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
@@ -30,11 +30,9 @@ $(document).ready( function() {
       <br>
       <form name="login_form" method="post" action="login_form.php">
       <div id="login_rectangle">
-      <CENTER><p class="login_title">로그인</p><br>
+      <CENTER><p class="login_title">로그인</p></CENTER>
         <div id="login_form">
-          <div id="login1">
-
-            <div id="id_input_button">
+          <div id="inputform">
               <div id="id_pw_title">
                 <ul>
                   <li> ID : </li>
@@ -47,16 +45,15 @@ $(document).ready( function() {
                   <li><input type="password" name="pass" class="login_input" required></li>
                 </ul>
               </div>
-              <div id="login_button">
-                  <center><button id="button3" onClick="document.member_form.submit()">로그인</button>&nbsp;&nbsp;
-              </div>
-            </div>
-
-            <div class="clear"></div>
-            <div id="join_button">
-              <button id="button4" onClick="./signup_form.php">회원가입</button>
-            </div>
-          </div> <!-- end of login1 -->
+              <div class="clear"></div>
+              <CENTER><br><br>
+              <button id="button3" onClick="document.member_form.submit()">로그인</button>
+            </CENTER>
+          </div>
+              <div class="clear"></div>
+              <CENTER><br>
+                <button id="button4" onClick="location.href='./signup_form.php'">회원가입</button>
+              </CENTER>
         </div> <!-- end of login_form -->
       </div> <!-- end of login_rectangle -->
     </form>

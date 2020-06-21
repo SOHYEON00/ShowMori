@@ -44,6 +44,7 @@
           alert("비밀번호가 일치하지 않습니다. \n다시입력해주세요");
           document.member_form.pass.focus();
           document.member_form.pass.select();
+          return;
       }
       else{
         document.member_form.submit();
