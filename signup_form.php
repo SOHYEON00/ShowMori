@@ -39,12 +39,14 @@
         document.member_form.name.focus();
         document.member_form.name.select();
       }
-      else if(document.member_form.pass.value != document.member_form.pass_confirm.value)
+        else if(document.member_form.pass.value != document.member_form.pass_confirm.value)
       {
           alert("비밀번호가 일치하지 않습니다. \n다시입력해주세요");
+          document.member_form.pass.value="";
+          document.member_form.pass_confirm.value="";
           document.member_form.pass.focus();
           document.member_form.pass.select();
-          return;
+
       }
       else{
         document.member_form.submit();

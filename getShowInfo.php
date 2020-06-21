@@ -14,66 +14,6 @@
         $goalSum = $_GET['goalSum'];
      
 
-        $q_chkT = "SELECT s_title from post_t ;";
-        $r_chkT = mysqli_query($conn, $q_chkT);
-
-        while($row_chkT=mysqli_fetch_array($r_chkT)){
-            if($title==$row_chkT['s_title']){ 
-
-                echo'<html>
-                <head>
-                <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-                <script type="text/javascript">
-                //페이지가 로드되면 실행한다.
-                $(document).ready( function() {
-                    $("#header").load("header.php");
-                });
-                </script>
-                <style>
-                @import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&t&family=Nanum+Gothic:wght@800&display=swap");
-                p{
-                    position: relative;
-                    width:600px;
-                    height:100px;
-                    top: 30%;
-                    background-color: #EAEAEA;
-                    margin: 0 auto;
-                    text-align: center;
-                }
-                p span{
-                    font-family:"Nanum Brush Script";
-                    font-size:30px;
-                    padding: 0 10;
-                    position: absolute;
-                    top: 40%;
-                    left:30%;
-                }
-                #getShowInfo_btn{
-                    position:relative;
-                    top:110%;
-                    margin:0 auto;
-                    background-color: #F96B6B;
-                    border-radius: 12px;
-                    font-size:18px;
-                    color:white;
-                    border: 10px;
-                    height: 35px;
-                }
-                #contents a:visited{ color:white; }
-                </style>
-                </head>
-                <body>
-                <div id="header"></div>
-                 <p id="contents">
-                    <span >같은 이름을 가진 공연이 존재합니다.</span>
-                    <button id="getShowInfo_btn"><a href="./writepostpage.html"> 다른 공연 게시하기</a></button>   
-                </p>    
-                </body>
-                </html>';
-        
-                return;
-            }
-        }
         $q_chkUprm = "SELECT u_prm from user_t where id='".$userid."';";
         $r_chkUprm = mysqli_query($conn,$q_chkUprm);
         $row_chkUprm = mysqli_fetch_array($r_chkUprm);
