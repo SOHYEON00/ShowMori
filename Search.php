@@ -55,52 +55,61 @@ $(document).ready( function() {
 
 		//print table with 4column in 1row
 		if($cnt%4==1){
-			echo"
-				<tr>
-				<td>
-				<a href='./s_info_page.php'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
-				<a href='./s_info_page.php'><p id='s_title'>$title</p></a>
-				<p class='t_content'>$leftSum 남음
-					&nbsp;&nbsp;
-					$percentage %</a>
-				</p>	
-				<p class='t_content'>마감
-					&nbsp;&nbsp;&nbsp;&nbsp;
-				 	<a>D-$leftDate day</a>
-				 </p>		
-				</td>
-				";
-				$cnt++;
-		}
-		 else if($cnt%4==0){
-			echo"<td>
-				<a href='./s_info_page.php'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
-				<a href='./s_info_page.php'><p id='s_title'>$title</p></a>
-				<p class='t_content'>$leftSum 남음
-					&nbsp;&nbsp;
-					$percentage %</a>
-				</p>	
-				<p class='t_content'>마감
-					&nbsp;&nbsp;&nbsp;&nbsp;
-				 	<a>D-$leftDate day</a>
-				 </p>		
-				</td>
-				</tr>";
-				$cnt++;
-		}
-		else{
-			echo"<td>
-				<a href='./s_info_page.php'><img src='./data/IMG/".$row['S_POSTER']."'/></a>
-				<a href='./s_info_page.php'><p id='s_title'>$title</p></a>
-				<p class='t_content'>$leftSum 남음
-					&nbsp;&nbsp;
-					$percentage %</a>
-				</p>	
-				<p class='t_content'>마감
-					&nbsp;&nbsp;&nbsp;&nbsp;
-				 	<a>D-$leftDate day</a>
-				 </p>		
-				</td>";
+         echo"
+            <tr>
+            <form method='POST' action='./s_info_page.php'>
+               <td>
+                  <a href='./s_info_page.php?snum=".$row['S_PRM']."'><img src='./data/IMG/".$row['S_POSTER']."'></a>
+                  <a href='./s_info_page.php'><p id='s_title' name='title'>$title</p></a>
+
+                  <p class='t_content'>$leftSum 남음
+                     <a style='margin-left: 0;color: red;'>$cong</a>
+                     $percentage %</a>
+                  </p>
+                  <p class='t_content'>마감
+                     &nbsp;&nbsp;&nbsp;&nbsp;
+                      <a name='print_leftDate'>D-$leftDate day</a>
+                   </p>
+               </td>
+            </form>
+            ";
+            $cnt++;
+      }
+       else if($cnt%4==0){
+         echo"
+            <form method='POST' action='./s_info_page.php'>
+               <td>
+                  <a href='./s_info_page.php?snum=".$row['S_PRM']."'><img src='./data/IMG/".$row['S_POSTER']."'></a>
+                  <a href='./s_info_page.php'><p id='s_title' name='print_title'>$title</p></a>
+                  <p class='t_content'>$leftSum 남음
+                      <a style='margin-left: 0;color: red;'>$cong</a>
+                     $percentage %</a>
+                  </p>
+                  <p class='t_content'>마감
+                     &nbsp;&nbsp;&nbsp;&nbsp;
+                      <a name='print_leftDate'>D-$leftDate day</a>
+                   </p>
+                </td>
+             </form>
+            </tr>";
+            $cnt++;
+      }
+      else{
+         echo"
+            <form method='POST' action='s_info_page.php'>
+               <td>
+                  <a href='./s_info_page.php?snum=".$row['S_PRM']."'><img src='./data/IMG/".$row['S_POSTER']."'></a>
+                  <a href='./s_info_page.php'><p id='s_title' name='print_title'>$title</p></a>
+                  <p class='t_content'>$leftSum 남음
+                      <a style='margin-left: 0;color: red;'>$cong</a>
+                     $percentage %</a>
+                  </p>
+                  <p class='t_content'>마감
+                     &nbsp;&nbsp;&nbsp;&nbsp;
+                      <a name='print_leftDate'>D-$leftDate day</a>
+                   </p>
+                </td>
+             </form>";
 				$cnt++;
 			}
 	}//print info of show -tuples from DB

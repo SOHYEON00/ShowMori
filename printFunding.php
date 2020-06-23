@@ -140,6 +140,7 @@ session_start();
 				if($rowSumMoney==NULL){$rowSumMoney=0;}
 				$percentage =round($rowSumMoney['sum']/$goalsum,2)*100;
 				if($percentage==100){ $cong="후원성공!";}
+			
 					
 
 				echo"<a style='margin-left: 0;

@@ -124,6 +124,7 @@ session_start();
 				$sPrm = $row_Sinfo['SPRM'];
 				$title = $row_Sinfo['S_TITLE'];
 				$dMoney = $row_Sinfo['D_MONEY'];
+				$cong ="";
 
 
 				//get $cnt to finish while()
@@ -131,19 +132,29 @@ session_start();
 				$r_cnt = mysqli_query($conn,$q_cnt);
 				$row_cnt=mysqli_fetch_array($r_cnt);
 
-				$qSumMoney = "SELECT sum(d_money) as sum from d_info_t WHERE S_PRM='".$row_Sinfo['S_PRM']."';";
+				$qSumMoney = "SELECT SUM(d_money) as SUM1 from D_INFO_T WHERE S_PRM='".$sPrm."';";
 				$rSumMoney = mysqli_query($conn,$qSumMoney);
 				$rowSumMoney = mysqli_fetch_array($rSumMoney);
 
-				$percentage =round($rowSumMoney['sum']/$row_Sinfo['S_GOALSUM'],2)*100;
+				$percentage =round($rowSumMoney['SUM1']/$row_Sinfo['S_GOALSUM'],2)*100;
+				
+				if($percentage==100){ $cong="후원성공!";}
 
+				echo"<a style='margin-left: 0;
+			    position: relative;
+			    top: -10px;
+			    left: 17%;
+			    font-weight: bold;
+			    color: red;'>$cong</a>";	
 
 				echo"
 					<tr>
+
 						<td>$index</td>
 						<input type='hidden' name='s_prm' value='".$sPrm."'/>
 						<td>$title</td>
 						<td>$percentage %</td>
+
 						<td>$dMoney</td>
 						<td>";
 
