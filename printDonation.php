@@ -32,15 +32,10 @@ session_start();
 			$editDonation = './editDonation.php';
 			$deleteDonation = './deleteDonation.php';
 
-			//u_prm으로 id 찾기
-			$q_selU_PRM = "SELECT U_PRM FROM USER_T WHERE ID='".$_SESSION['userid']."'";
-			$r_selU_PRM = mysqli_query($conn,$q_selU_PRM);
-			$rowU_PRM = mysqli_fetch_array($r_selU_PRM);
-			$userPrm = $rowU_PRM['U_PRM'];
 
 
-			//u_prm으로 후원 정보 찾기 from d_date_t
-			$q_selD = "SELECT S_PRM,D_MONEY  FROM D_INFO_T WHERE U_PRM='".$userPrm."'";
+			//회원 아이디로 후원 정보 찾기 from d_date_t
+			$q_selD = "SELECT S_PRM,D_MONEY  FROM D_INFO_T WHERE id='".$userId."';";
 			$r_selD = mysqli_query($conn,$q_selD);
 			$row_selD=mysqli_fetch_array($r_selD);
 			
@@ -115,7 +110,7 @@ session_start();
 			
 			
 			//get info of column using u_prm
-			$q_Sinfo = "SELECT P.S_PRM as SPRM,S_TITLE,S_GOALSUM,D.D_MONEY as D_MONEY FROM POST_T AS P LEFT JOIN D_INFO_T AS D ON P.S_PRM = D.S_PRM WHERE D.U_PRM='".$userPrm."'";
+			$q_Sinfo = "SELECT P.S_PRM as SPRM,S_TITLE,S_GOALSUM,D.D_MONEY as D_MONEY FROM POST_T AS P LEFT JOIN D_INFO_T AS D ON P.S_PRM = D.S_PRM WHERE D.id='".$userId."';";
 			$r_Sinfo = mysqli_query($conn, $q_Sinfo);
 
 
@@ -128,7 +123,7 @@ session_start();
 
 
 				//get $cnt to finish while()
-				$q_cnt = "SELECT U_PRM, COUNT(D_PRM) AS CntS FROM D_INFO_T WHERE U_PRM='".$userPrm."' GROUP BY U_PRM";
+				$q_cnt = "SELECT ID, COUNT(D_PRM) AS CntS FROM D_INFO_T WHERE id='".$userId."' GROUP BY ID";
 				$r_cnt = mysqli_query($conn,$q_cnt);
 				$row_cnt=mysqli_fetch_array($r_cnt);
 

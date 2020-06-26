@@ -58,7 +58,6 @@ include './dbconn.php';
 <?
   
   $sprm = $_GET['sprm'];
-  $uprm = $_GET['uprm'];
 
   $q_getT = "SELECT S_TITLE FROM POST_T WHERE S_PRM='".$sprm."';";
   $r_getT = mysqli_query($conn,$q_getT);

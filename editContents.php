@@ -24,10 +24,7 @@
 		    break;
 	}
 
-	$q_getU = "SELECT U_PRM FROM USER_T WHERE ID='".$userid."';";
-	$r_getU = mysqli_query($conn,$q_getU);
-	$row_getU = mysqli_fetch_array($r_getU);
-	$uprm = $row_getU['U_PRM'];
+
 
 	$q_updateDo = "UPDATE D_INFO_T SET D_MONEY='".$money."',D_DATE='".$date."' WHERE D_PRM='".$dprm."';";
 	$r_updateDo = mysqli_query($conn,$q_updateDo);

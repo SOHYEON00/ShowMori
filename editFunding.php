@@ -29,12 +29,9 @@
 		$func = $_GET['in_btn'];
 		$userid = $_SESSION['userid'];
 
-		$q_getU = "SELECT U_PRM FROM USER_T WHERE ID='".$userid."';";
-		$r_getU = mysqli_query($conn,$q_getU);
-		$row_getU = mysqli_fetch_array($r_getU);
-		$uprm = $row_getU['U_PRM'];
+		
 
-		$q_getInfo = "SELECT D_PRM, S_TITLE, D_MONEY,D_DATE FROM D_INFO_T JOIN POST_T ON D_INFO_T.S_PRM=POST_T.S_PRM WHERE D_INFO_T.U_PRM='".$uprm."' AND D_INFO_T.S_PRM='".$sprm."';";
+		$q_getInfo = "SELECT D_PRM, S_TITLE, D_MONEY,D_DATE FROM D_INFO_T JOIN POST_T ON D_INFO_T.S_PRM=POST_T.S_PRM WHERE D_INFO_T.ID='".$userid."' AND D_INFO_T.S_PRM='".$sprm."';";
 		$r_getInfo = mysqli_query($conn,$q_getInfo);
 
 		while($row_getInfo = mysqli_fetch_array($r_getInfo)){
@@ -50,7 +47,7 @@
 			echo '
 			<form method="GET" action="editContents_fund.php">
 			<input type="hidden" name="sprm" value="'.$sprm.'">
-			<input type="hidden" name="uprm" value="'.$uprm.'">
+			<input type="hidden" name="id" value="'.$id.'">
 
 			<style>
 		        @import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&t&family=Nanum+Gothic:wght@800&display=swap");

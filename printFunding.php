@@ -26,17 +26,13 @@ session_start();
 
 		<?
 			include './dbconn.php';
-			
-			//세션아이디로 u_prm얻어오기
-			$q_getUprm = "SELECT U_PRM FROM USER_T WHERE ID='".$_SESSION['userid']."';";
-			$r_getUprm = mysqli_query($conn,$q_getUprm);
-			$row_getUprm = mysqli_fetch_array($r_getUprm);
-			$userPrm = $row_getUprm['U_PRM'];
 
+			
+			$userid = $_SESSION['userid'];
 			$nDate = date('Y-m-d');//NOW(TODAY)
 
 			//포스트한 글이 있는지 없는지 검사
-			$q_chkIf = "SELECT S_PRM FROM POST_T WHERE U_PRM='".$userPrm."'";
+			$q_chkIf = "SELECT S_PRM FROM POST_T WHERE id='".$userid."'";
 			$r_chkIf = mysqli_query($conn,$q_chkIf);
 			$row_chkIF=mysqli_fetch_array($r_chkIf);
 
@@ -88,8 +84,8 @@ session_start();
 			<p id='userId'>'".$_SESSION['userid']."'님이 게시한 공연</p>
 			";	
 
-			//로그인한 유저가 포스팅한 글의 INFO
-			$q_selF = "SELECT S_PRM,S_TITLE,S_GOALSUM,S_DEADLINE FROM POST_T WHERE U_PRM='".$userPrm."'";
+			//로그인한 유저가 포스팅한 글의 INFOuserPrm
+			$q_selF = "SELECT S_PRM,S_TITLE,S_GOALSUM,S_DEADLINE FROM POST_T WHERE id='".$userid."'";
 			$r_selF = mysqli_query($conn,$q_selF);
 
 			while($row_selF=mysqli_fetch_array($r_selF)){
@@ -127,7 +123,7 @@ session_start();
 				";
 
 				//공연 당 후원한 회원정보
-				$q_infoUser = "SELECT ID,U_PHONE,d_money FROM USER_T AS U JOIN D_INFO_T AS D ON U.U_PRM = D.U_PRM WHERE D.S_PRM='".$show_prm."';";
+				$q_infoUser = "SELECT D.ID,U_PHONE,d_money FROM USER_T AS U JOIN D_INFO_T AS D ON U.id = D.id WHERE D.S_PRM='".$show_prm."';";
 				$r_infoUser = mysqli_query($conn,$q_infoUser);
 
 
@@ -149,6 +145,7 @@ session_start();
 			    left: 23.5%;
 			    font-weight: bold;
 			    color: red;'>$cong</a>";
+
 				while($row_infoUser = mysqli_fetch_array($r_infoUser)){
 
 					
@@ -184,17 +181,7 @@ session_start();
 				}
 				echo "</table> <br></form>";
 			}
-			/*
-				while()
-				{
-					테이블, 첫 tr 출력 /유저가 올린 포스트 개수만큼 나와야 함.
-					필요한 것 : u_prm이 올린 포스트 정보(s_title,s_deadline,s_goalsum)
-					while()
-					{
-						각 테이블 당 후원한 사람들 + 게시글 정보 출력
-					}
-				}
-			*/
+			
 			mysqli_close($conn);
 		?>
 	</div>

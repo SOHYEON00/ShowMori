@@ -14,12 +14,9 @@ $sprm = $_GET['sprm'];
 
 		
 
-        $q_chkUprm = "SELECT u_prm from user_t where id='".$userid."';";
-        $r_chkUprm = mysqli_query($conn,$q_chkUprm);
-        $row_chkUprm = mysqli_fetch_array($r_chkUprm);
-        $uprm = $row_chkUprm['u_prm'];
+        
 
-        $q_upFund = "UPDATE POST_T SET S_POSTER='".$filePoster."',S_SYNOP='".$fileSynop."',S_GOALSUM='".$goalSum."',S_DEADLINE='".$deadLine."',START_DAY='".$startDate."',LAST_DAY='".$lastDate."' WHERE S_PRM='".$sprm."' AND U_PRM='".$uprm."';";
+        $q_upFund = "UPDATE POST_T SET S_POSTER='".$filePoster."',S_SYNOP='".$fileSynop."',S_GOALSUM='".$goalSum."',S_DEADLINE='".$deadLine."',START_DAY='".$startDate."',LAST_DAY='".$lastDate."' WHERE S_PRM='".$sprm."' AND ID='".$userid."';";
         $r_upFund = mysqli_query($conn,$q_upFund);
 
      

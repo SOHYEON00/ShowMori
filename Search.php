@@ -51,7 +51,7 @@ $(document).ready( function() {
 		$leftDate = intval((strtotime($row['S_DEADLINE'])-strtotime($nDate)) / 86400);
 		//deadline - today
 
-		$percentage =round($row2['sum']/$row['S_GOALSUM'],2);
+		$percentage =round($row2['sum']/$row['S_GOALSUM'],2)*100;
 
 		//print table with 4column in 1row
 		if($cnt%4==1){

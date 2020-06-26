@@ -38,12 +38,8 @@
 		$func = $_GET['in_btn'];
 		$userid = $_SESSION['userid'];
 
-		$q_getU = "SELECT U_PRM FROM USER_T WHERE ID='".$userid."';";
-		$r_getU = mysqli_query($conn,$q_getU);
-		$row_getU = mysqli_fetch_array($r_getU);
-		$uprm = $row_getU['U_PRM'];
-
-		$q_getInfo = "SELECT D_PRM, S_TITLE, D_MONEY,D_DATE FROM D_INFO_T JOIN POST_T ON D_INFO_T.S_PRM=POST_T.S_PRM WHERE D_INFO_T.U_PRM='".$uprm."' AND D_INFO_T.S_PRM='".$sprm."';";
+		//조인을 이용한 공연 정보 수정에 필요한 값 얻는 쿼리문.
+		$q_getInfo = "SELECT D_PRM, S_TITLE, D_MONEY,D_DATE FROM D_INFO_T JOIN POST_T ON D_INFO_T.S_PRM=POST_T.S_PRM WHERE D_INFO_T.ID='".$userid."' AND D_INFO_T.S_PRM='".$sprm."';";
 		$r_getInfo = mysqli_query($conn,$q_getInfo);
 
 		while($row_getInfo = mysqli_fetch_array($r_getInfo)){
@@ -104,9 +100,11 @@
 		if($func=='삭제'){
 
 			echo "<script>alert('정말 후원을 취소하시겠습니까?');</script>";
+			//유저가 선택한 공연에 대한 후원 삭제
 			$q_delete = "DELETE FROM D_INFO_T WHERE D_PRM='".$dprm."';";
 			$r_delete =mysqli_query($conn,$q_delete);
-			
+
+			//후원삭제가 제대로 되었는지 확인하는 쿼리문
 			$q_chkDelete = "SELECT D_PRM FROM D_INFO_T WHERE D_PRM='".$dprm."';";
 			$r_chkDelete = mysqli_query($conn,$q_chkDelete);
 			$row_chkDelete = mysqli_fetch_array($r_chkDelete);

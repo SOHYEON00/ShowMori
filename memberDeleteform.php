@@ -64,19 +64,18 @@ session_start();
       $res1 = mysqli_query($conn, $sql1);
       while($row1 = mysqli_fetch_array($res1)){
 
-        $sql2 = "SELECT * FROM post_t WHERE U_PRM='".$row1['U_PRM']."';";
+        $sql2 = "SELECT * FROM post_t WHERE id='".$id."';";
         $res2 = mysqli_query($conn, $sql2);
         $row2 = mysqli_fetch_array($res2);
 
-        $uprm=$row1['U_PRM'];
         $sprm=$row2['S_PRM'];
 
 
-        $delmem1 = "DELETE FROM d_info_t WHERE U_PRM='".$uprm."';";
-        $delmem1 .= "DELETE d FROM d_info_t as d JOIN post_t as p ON d.s_prm=p.s_prm WHERE p.u_prm='".$uprm."';";
-        $delmem1 .= "DELETE S FROM S_DATE_T AS S JOIN POST_T AS T ON S.S_PRM=T.S_PRM WHERE T.U_PRM =(SELECT U_PRM FROM USER_T WHERE ID='".$id."');";
-        $delmem1 .= "DELETE FROM post_t WHERE U_PRM='".$uprm."';";
-        $delmem1 .= "DELETE FROM user_t WHERE U_PRM='".$uprm."';";
+        $delmem1 = "DELETE FROM d_info_t WHERE id='".$id."';";
+        $delmem1 .= "DELETE d FROM d_info_t as d JOIN post_t as p ON d.s_prm=p.s_prm WHERE p.id='".$id."';";
+        $delmem1 .= "DELETE S FROM S_DATE_T AS S JOIN POST_T AS T ON S.S_PRM=T.S_PRM WHERE T.id =(SELECT id FROM USER_T WHERE ID='".$id."');";
+        $delmem1 .= "DELETE FROM post_t WHERE id='".$id."';";
+        $delmem1 .= "DELETE FROM user_t WHERE id='".$id."';";
         $resultdel1 = mysqli_multi_query($conn,$delmem1);
           session_destroy();
       }

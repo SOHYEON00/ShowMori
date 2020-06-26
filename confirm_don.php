@@ -16,11 +16,7 @@ $row_getS = mysqli_fetch_array($r_getS);
 $sprm = $row_getS['S_PRM'];
 
 
-$q_getU = "SELECT U_PRM FROM USER_T WHERE ID='".$userid."';";
-$r_getU = mysqli_query($conn,$q_getU);
-$row_getU = mysqli_fetch_array($r_getU);
-
-$q_insert = "INSERT INTO D_INFO_T(S_PRM,U_PRM,D_MONEY,D_DATE) VALUES('".$sprm."','".$row_getU['U_PRM']."','".$money."','".$date."');";
+$q_insert = "INSERT INTO D_INFO_T(S_PRM,ID,D_MONEY,D_DATE) VALUES('".$sprm."','".$userid."','".$money."','".$date."');";
 $r_insert = mysqli_query($conn,$q_insert);
 
 		echo'

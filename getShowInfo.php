@@ -74,12 +74,9 @@
                 return;
             }
         }
-        $q_chkUprm = "SELECT u_prm from user_t where id='".$userid."';";
-        $r_chkUprm = mysqli_query($conn,$q_chkUprm);
-        $row_chkUprm = mysqli_fetch_array($r_chkUprm);
 
         //insert data into POST_T from wrtiepostpage.html        
-        $q_inPost = "INSERT INTO POST_T(U_PRM, S_POSTER,S_SYNOP,S_TITLE,S_DEADLINE,START_DAY,LAST_DAY,S_GOALSUM ) VALUES('".$row_chkUprm['u_prm']."','".$filePoster."','".$fileSynop."','".$title."','".$deadLine."','".$startDate."','".$lastDate."','".$goalSum."'); ";
+        $q_inPost = "INSERT INTO POST_T(id, S_POSTER,S_SYNOP,S_TITLE,S_DEADLINE,START_DAY,LAST_DAY,S_GOALSUM ) VALUES('".$userid."','".$filePoster."','".$fileSynop."','".$title."','".$deadLine."','".$startDate."','".$lastDate."','".$goalSum."'); ";
             $r_insert = mysqli_query($conn,$q_inPost);
 
         //새로 넣은 글의 정보 select
@@ -96,7 +93,7 @@
             $month = substr($i,4,2);
             $day = substr($i,6,2);
 
-            if(checkdate($month, $day, $year)){
+            if(checkdate($month,$day,$year)){
                 $caldate= $year."-".$month."-".$day;
             }
                 
