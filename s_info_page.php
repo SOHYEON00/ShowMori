@@ -17,7 +17,8 @@
 
     $("#header").load("header.php");
   });
-
+  
+  //리워드 확인 페이지 출력
    function chk_reward(){
 
     var sel = document.getElementById("reward");

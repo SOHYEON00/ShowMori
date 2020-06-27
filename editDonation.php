@@ -1,4 +1,4 @@
-<!-- 후원 내역->수정 -->
+<!-- 후원 내역 수정 화면 및 기능 -->
 
 <html>
 <!-- print header -->
@@ -13,8 +13,8 @@
 		$("#header").load("header.php");
 	});
 
+	//리워드 확인 페이지 출력
 	  function chk_reward(){
-
 	    var sel = document.getElementById("reward");
 	    var s_value= sel.value;
 
@@ -50,7 +50,7 @@
 			$dDate= $row_getInfo['D_DATE'];
 		}
 
-
+		//'수정'버튼을 선택한 경우
 		if($func=='수정'){
 
 			echo '
@@ -64,7 +64,7 @@
 			            <td >"'.$sTitle.'"</td>
 			            <input type="hidden" name="dprm" value="'.$dprm.'">
 			            <input type="hidden" name="chk_title" value="'.$sTitle.'">
-	         		</tr>
+	         		</tr> 
 						<tr>
 							<td class="row1">후원금액<td>
 							
@@ -83,6 +83,7 @@
 							<p id="edit_intro">본 공연은 아래의 날짜 중에서 관람 가능합니다.</p>
 							<div id="edit_day_div">';
 
+				//변경가능한 공연날짜 출력
 				$q_date = "SELECT DAY FROM S_DATE_T WHERE S_PRM='".$sprm."';";
 				$r_date = mysqli_query($conn,$q_date);	
 				while($row_date=mysqli_fetch_array($r_date)){
@@ -97,9 +98,12 @@
 						';
 
 		}
+
+		//'삭제'버튼을 클릭한 경우
 		if($func=='삭제'){
 
 			echo "<script>alert('정말 후원을 취소하시겠습니까?');</script>";
+			
 			//유저가 선택한 공연에 대한 후원 삭제
 			$q_delete = "DELETE FROM D_INFO_T WHERE D_PRM='".$dprm."';";
 			$r_delete =mysqli_query($conn,$q_delete);

@@ -1,8 +1,12 @@
 <?
-$conn = mysqli_connect("localhost","root","0204","showmori");
+try{
+   $conn = mysqli_connect("localhost","root","0204","showmori");
+}
+catch(Exception $ex)
+{
+   echo "connect failed";
+   echo $ex->getMessage()."<br>";
+   exit();
+}
 
-	if($conn->connect_error){
-		printf("Connect failed: %s",$conn->connect_error);
-		exit();
-	}
 ?>

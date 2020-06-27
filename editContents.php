@@ -1,3 +1,4 @@
+<!-- 후원 정보 수정 화면 및 기능 -->
 <?
 	include './dbconn.php';
 	session_start();
@@ -9,6 +10,7 @@
 	$date = $_GET['bookDate'];
 	$userid = $_SESSION['userid'];
 
+	// string으로 받은 form_value값 int로 바꾸는 switch문
 	switch ( $get_reward ) {
 		  case 'reward1':
 		    $money=20000;
@@ -25,7 +27,7 @@
 	}
 
 
-
+	//후원 정보 수정 쿼리문 
 	$q_updateDo = "UPDATE D_INFO_T SET D_MONEY='".$money."',D_DATE='".$date."' WHERE D_PRM='".$dprm."';";
 	$r_updateDo = mysqli_query($conn,$q_updateDo);
 

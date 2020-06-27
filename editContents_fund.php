@@ -1,4 +1,4 @@
-<!-- 글 게시하기 페이지 화면 및 처리 -->
+<!-- 펀딩(게시글)정보 수정을 위한 값 입력 폼 -->
 <?
 session_start();
 include './dbconn.php';
@@ -51,7 +51,7 @@ include './dbconn.php';
         window.location.href='/editCon_fund_final.php?fileSynop='+fileSynop.files[0].name+'&filePoster='+filePoster.files[0].name+'&startDate='+startDate.value+'&lastDate='+lastDate.value+'&deadLine='+deadLine.value+'&goalSum='+goalSum.value+'&sprm='+v_sprm.value;
       return;
     
-  }
+  } //재입력 값 확인 후 url통한 값 넘기기
   </script>
 </head>
 
@@ -59,12 +59,13 @@ include './dbconn.php';
   
   $sprm = $_GET['sprm'];
 
+  //정보수정을 위한 글 제목 찾는 쿼리문
   $q_getT = "SELECT S_TITLE FROM POST_T WHERE S_PRM='".$sprm."';";
   $r_getT = mysqli_query($conn,$q_getT);
   $row_getT = mysqli_fetch_array($r_getT);
 
 
-
+//게시글정보 재입력 폼
 echo'
 <div id="header"></div> 
   

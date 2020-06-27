@@ -12,10 +12,11 @@ session_start();
   //페이지가 로드되면 실행한다.
   $(document).ready( function() {
 
+
     $("#header").load("header.php");
   });
   
-
+  //포스트 폼 처리 
   function chkForm(){
       var title = post_form.title;
       var fileSynop = post_form.fileSynop;
@@ -36,17 +37,19 @@ session_start();
         return;     
       }
         
-      
+        //목표금액 최솟값체크
         if(goalSum.value<50000){
           alert("목표금액은 최소 50,000입니다.");
           document.post_form.goalSum.focus();
           return;
         }
+        //공연 날짜 체크
         if((+dateS)>=(+dateL)){
           alert("공연 시작날짜가 공연 마감날짜와 같거나 늦습니다.");
           document.post_form.startDate.focus();
           return;
         }
+        //후원날짜 체크
         if((+dateD)>=(+dateS)){
           alert("후원 마감날짜는 공연 시작날짜보다 늦을 수 없습니다.");
           document.post_form.deadline.focus();
@@ -54,7 +57,7 @@ session_start();
         }
         
         
-        
+        //form에서 입력한 값 getShowInfo.php로 넘겨줌
         window.location.href='/getShowInfo.php?title='+title.value+'&fileSynop='+fileSynop.files[0].name+'&filePoster='+filePoster.files[0].name+'&startDate='+startDate.value+'&lastDate='+lastDate.value+'&deadLine='+deadLine.value+'&goalSum='+goalSum.value;
         
 
@@ -62,7 +65,7 @@ session_start();
   }
   </script>
 </head>
-
+<!-- 로그인이 되지 않은 경우 -->
 <?
   if(!$_SESSION['userid']) {
     echo'
@@ -104,19 +107,18 @@ session_start();
             <span >로그인이 필요한 기능입니다.</span>
             <button id="getShowInfo_btn"><a href="./loginpage.php"> 로그인 하러 가기</a></button>  
         </p>
-
     ';
     return;
   }
 ?>
 
-
+<!-- 공연 폼 입력 -->
 <div id="header"></div> 
   
   <h3>POST NEW PROJECT</h3>
   <div id="post">
 
-<form name="post_form" method="GET">
+<form name="post_form" method="GET"> 
     <div id="showInfo">
    
       <p class="title">SHOW informatioin</p>

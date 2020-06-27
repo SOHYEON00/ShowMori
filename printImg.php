@@ -3,15 +3,15 @@
 <?
 session_start();
 include './dbconn.php';
-
-
-
+   
+   //공연 정보 모두 출력
    $qInfo = "SELECT S_TITLE,S_POSTER,S_GOALSUM,S_DEADLINE,S_PRM from post_t;";
    $rPoster = mysqli_query($conn,$qInfo);
    $nDate = date('Y-m-d');
-   $cnt=1;
+   $cnt=1; //한 줄에 4개씩 출력하기 위한 공연 count변수
    
    
+   //공연 출력
    while($row=mysqli_fetch_array($rPoster)){
       $title = $row['S_TITLE'];
       $show_p = $row['S_PRM'];
@@ -20,21 +20,19 @@ include './dbconn.php';
       //GET SUM(D_MONEY) BY DONATION
       $qSumMoney = "SELECT S_PRM, sum(d_money) as sum from d_info_t WHERE S_PRM='".$show_p."';";
       $rSumMoney = mysqli_query($conn,$qSumMoney);
-
-
       $row2 = mysqli_fetch_array($rSumMoney);
+      
       if($row2==NULL) {echo "해당 공연의 후원정보가 없습니다.";}
 
       $leftSum = ($row['S_GOALSUM']-$row2['sum']);//goalsum - donated sum
-      $leftDate = intval((strtotime($row['S_DEADLINE'])-strtotime($nDate)) / 86400);
-      //deadline - today
+      $leftDate = intval((strtotime($row['S_DEADLINE'])-strtotime($nDate)) / 86400);  //deadline - today
+    
 
-      
-      if($leftSum==0){ $cong="후원성공!";}
-
+      if($leftSum==0){ $cong="후원성공!";} //남은금액이 0인 경우
 
       $percentage =round($row2['sum']/$row['S_GOALSUM'],2)*100;
 
+      //후원마감기한이 지난 공연인 경우 삭제
       if($leftDate<=0){
          $qDet = "DELETE FROM D_INFO_T WHERE S_PRM='".$show_p."';";
          $qDet .= "DELETE FROM s_date_t WHERE S_PRM='".$show_p."';";
@@ -42,7 +40,7 @@ include './dbconn.php';
          $rDet = mysqli_multi_query($conn,$qDet);
       }
 
-
+      //공연 한 줄에 4개씩 출력
       if($cnt%4==1){
          echo"
             <tr>

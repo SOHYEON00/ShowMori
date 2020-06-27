@@ -8,14 +8,14 @@ $title = $_GET['chk_title'];
 $money = $_GET['sel_money'];
 $date = $_GET['bookDate'];
 
-//쇼 정보 겟
+//공연제목에 따른 s_prm 얻기
 $q_getS = "SELECT S_PRM FROM POST_T WHERE S_TITLE='".$title."';";
 $r_getS = mysqli_query($conn,$q_getS);
 $row_getS = mysqli_fetch_array($r_getS);
 
 $sprm = $row_getS['S_PRM'];
 
-
+//후원 데이터 입력
 $q_insert = "INSERT INTO D_INFO_T(S_PRM,ID,D_MONEY,D_DATE) VALUES('".$sprm."','".$userid."','".$money."','".$date."');";
 $r_insert = mysqli_query($conn,$q_insert);
 
@@ -77,7 +77,7 @@ $r_insert = mysqli_query($conn,$q_insert);
         </p>
         </body>
         </html>
-		';
+		'; //후원성공 알림
         mysqli_close($conn);
 
 ?>

@@ -1,4 +1,4 @@
-<!-- 펀딩 내역->수정 -->
+<!-- 펀딩 내역 수정 및 삭제 기능 구현 -->
 <html>
 <!-- print header -->
 <head>
@@ -29,25 +29,11 @@
 		$func = $_GET['in_btn'];
 		$userid = $_SESSION['userid'];
 
-		
 
-		$q_getInfo = "SELECT D_PRM, S_TITLE, D_MONEY,D_DATE FROM D_INFO_T JOIN POST_T ON D_INFO_T.S_PRM=POST_T.S_PRM WHERE D_INFO_T.ID='".$userid."' AND D_INFO_T.S_PRM='".$sprm."';";
-		$r_getInfo = mysqli_query($conn,$q_getInfo);
-
-		while($row_getInfo = mysqli_fetch_array($r_getInfo)){
-
-			$dprm = $row_getInfo['D_PRM'];
-			$sTitle = $row_getInfo['S_TITLE'];
-			$dMoney = $row_getInfo['D_MONEY'];
-			$dDate= $row_getInfo['D_DATE'];
-		}
-
-
-		if($func=='수정'){
+		if($func=='수정'){ //hidden버튼을 통한 값 넘기기 
 			echo '
 			<form method="GET" action="editContents_fund.php">
 			<input type="hidden" name="sprm" value="'.$sprm.'">
-			<input type="hidden" name="id" value="'.$id.'">
 
 			<style>
 		        @import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&t&family=Nanum+Gothic:wght@800&display=swap");
@@ -95,18 +81,21 @@
 		if($func=='삭제'){
 
 			echo "<script>alert('정말 펀딩을 취소하시겠습니까? (해당 공연의 후원이 전체 취소됩니다.)');</script>";
-		
+			 
+			 //게시글(펀딩)삭제 쿼리문
 			 $q_delFund = "DELETE FROM D_INFO_T WHERE S_PRM='".$sprm."';";
 	         $q_delFund .= "DELETE FROM s_date_t WHERE S_PRM='".$sprm."';";
 	         $q_delFund .= "DELETE FROM post_t WHERE S_PRM='".$sprm."';";
 	         $r_delFund = mysqli_multi_query($conn,$q_delFund);
 
+	         //삭제가 제대로 이뤄졌는지 확인차 검색
 	         $q_chk = "SELECT S_PRM FROM POST_T WHERE S_PRM='".$sprm."';";
 	         $r_chk = mysqli_query($conn,$q_chk);
-	
 
+	        //삭제에 실패한 경우=검색 결과가 null이 아닌 경우
 			if($r_chk){ echo "<script>alert('펀딩 취소에 실패했습니다.');</script>"; return;}
 
+			//삭제에 성공한 경우
 			echo'<html>
                 <head>
                 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>

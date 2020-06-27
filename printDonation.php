@@ -33,13 +33,13 @@ session_start();
 			$deleteDonation = './deleteDonation.php';
 
 
-
-			//회원 아이디로 후원 정보 찾기 from d_date_t
+			//유저가 후원한 공연,후원금액 찾는 쿼리문
 			$q_selD = "SELECT S_PRM,D_MONEY  FROM D_INFO_T WHERE id='".$userId."';";
 			$r_selD = mysqli_query($conn,$q_selD);
 			$row_selD=mysqli_fetch_array($r_selD);
 			
 
+			//후원기록이 없는 경우
 			if(!$row_selD){
 
 				echo'
@@ -87,7 +87,6 @@ session_start();
 			}
 
 			else{
-
 				echo "
 
 				<p id='userId'>'".$userId."'님이 현재 후원 중인 공연</p>
@@ -107,9 +106,7 @@ session_start();
 
 			$index = 0;
 
-			
-			
-			//get info of column using u_prm
+			//유저가 후원한 공연 및 후원정보
 			$q_Sinfo = "SELECT P.S_PRM as SPRM,S_TITLE,S_GOALSUM,D.D_MONEY as D_MONEY FROM POST_T AS P LEFT JOIN D_INFO_T AS D ON P.S_PRM = D.S_PRM WHERE D.id='".$userId."';";
 			$r_Sinfo = mysqli_query($conn, $q_Sinfo);
 
@@ -119,61 +116,51 @@ session_start();
 				$sPrm = $row_Sinfo['SPRM'];
 				$title = $row_Sinfo['S_TITLE'];
 				$dMoney = $row_Sinfo['D_MONEY'];
-				$cong ="";
 
 
 				//get $cnt to finish while()
 				$q_cnt = "SELECT ID, COUNT(D_PRM) AS CntS FROM D_INFO_T WHERE id='".$userId."' GROUP BY ID";
-				$r_cnt = mysqli_query($conn,$q_cnt);
+				$r_cnt = mysqli_query($conn,$q_cnt); 
 				$row_cnt=mysqli_fetch_array($r_cnt);
 
+				//percentage를 위한 쿼리문
 				$qSumMoney = "SELECT SUM(d_money) as SUM1 from D_INFO_T WHERE S_PRM='".$sPrm."';";
 				$rSumMoney = mysqli_query($conn,$qSumMoney);
 				$rowSumMoney = mysqli_fetch_array($rSumMoney);
 
 				$percentage =round($rowSumMoney['SUM1']/$row_Sinfo['S_GOALSUM'],2)*100;
 				
-				if($percentage==100){ $cong="후원성공!";}
-
-				echo"<a style='margin-left: 0;
-			    position: relative;
-			    top: -10px;
-			    left: 17%;
-			    font-weight: bold;
-			    color: red;'>$cong</a>";	
 
 				echo"
 					<tr>
-
 						<td>$index</td>
 						<input type='hidden' name='s_prm' value='".$sPrm."'/>
-						<td>$title</td>
-						<td>$percentage %</td>
+						<td>$title</td>";
+				if($percentage==100){ echo"<td style='color:red;'>$percentage %</td>";} //후원성공한 경우 글씨컬러 변경
+				else{ echo "<td>$percentage %</td>";}
 
-						<td>$dMoney</td>
-						<td>";
+				echo"
+					<td>$dMoney</td>
+					<td>";
 
 					//query for get reward
 					$q_reward = "SELECT D_REWARD FROM REWARD_T WHERE D_MONEY<='".$row_Sinfo['D_MONEY']."';";
 					$r_reward = mysqli_query($conn,$q_reward);
 
 					while($row_reward=mysqli_fetch_array($r_reward)){
-
-						echo"
-								'".$row_reward['D_REWARD']."' ";
+						echo" '".$row_reward['D_REWARD']."' ";
 
 					}
 
 					echo"		
 							</td>
 							<td><input type='submit' name='in_btn' class='btn' value='수정'></td>
-
 							<td><input type='submit' name='in_btn' class='btn' value='삭제'></td>
 						</tr>";
 							
 						$index++;
 						
-					if($index==$row_cnt['CntS']){ return;}
+					if($index==$row_cnt['CntS']){ return;} //while문 종료
 			}		
 
 			echo "</table></form>";	

@@ -11,9 +11,10 @@
         $startDate = $_GET['startDate'];
         $lastDate = $_GET['lastDate'];
         $deadLine = $_GET['deadLine'];
-        $goalSum = $_GET['goalSum'];
+        $goalSum = $_GET['goalSum']; //url통해 넘어온 값 변수에 저장
      
 
+        //같은 타이틀을 가진 공연이 있는지 체크
         $q_chkT = "SELECT s_title from post_t ;";
         $r_chkT = mysqli_query($conn, $q_chkT);
 

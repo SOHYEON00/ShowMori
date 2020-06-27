@@ -1,4 +1,5 @@
 <!--  -마이페이지-펀딩내역 화면 및 처리-->
+
 <?
 session_start();
 ?>
@@ -31,11 +32,12 @@ session_start();
 			$userid = $_SESSION['userid'];
 			$nDate = date('Y-m-d');//NOW(TODAY)
 
-			//포스트한 글이 있는지 없는지 검사
+			//포스트 기록 확인
 			$q_chkIf = "SELECT S_PRM FROM POST_T WHERE id='".$userid."'";
 			$r_chkIf = mysqli_query($conn,$q_chkIf);
 			$row_chkIF=mysqli_fetch_array($r_chkIf);
 
+			//포스트 기록이 없는 경우 처리
 			if(!$row_chkIF){
 				echo'
 					<style>
@@ -84,7 +86,8 @@ session_start();
 			<p id='userId'>'".$_SESSION['userid']."'님이 게시한 공연</p>
 			";	
 
-			//로그인한 유저가 포스팅한 글의 INFOuserPrm
+				 
+			//로그인한 유저가 포스팅한 글 정보
 			$q_selF = "SELECT S_PRM,S_TITLE,S_GOALSUM,S_DEADLINE FROM POST_T WHERE id='".$userid."'";
 			$r_selF = mysqli_query($conn,$q_selF);
 
@@ -122,23 +125,18 @@ session_start();
 					</tr>
 				";
 
-				//공연 당 후원한 회원정보
-				$q_infoUser = "SELECT D.ID,U_PHONE,d_money FROM USER_T AS U JOIN D_INFO_T AS D ON U.id = D.id WHERE D.S_PRM='".$show_prm."';";
-				$r_infoUser = mysqli_query($conn,$q_infoUser);
-
 
 				//$percentage계산 위한 쿼리문
 				$qSumMoney = "SELECT sum(d_money) as sum from d_info_t WHERE S_PRM='".$show_prm."';";
-
 				$rSumMoney = mysqli_query($conn,$qSumMoney);
 				$rowSumMoney = mysqli_fetch_array($rSumMoney);
 				
+				//후원성공 알림 처리 
 				if($rowSumMoney==NULL){$rowSumMoney=0;}
 				$percentage =round($rowSumMoney['sum']/$goalsum,2)*100;
 				if($percentage==100){ $cong="후원성공!";}
 			
 					
-
 				echo"<a style='margin-left: 0;
 			    position: relative;
 			    top: -25px;
@@ -146,18 +144,25 @@ session_start();
 			    font-weight: bold;
 			    color: red;'>$cong</a>";
 
-				while($row_infoUser = mysqli_fetch_array($r_infoUser)){
+			    //이전에 생성된 뷰 삭제 (뷰는 글마다 생성,삭제됨)
+			    $q_delView = "DROP VIEW supporter;";
+			    $r_delView = mysqli_query($conn,$q_delView);
 
-					
+			    //후원한 회원정보를 보여주는 뷰 생성 
+			    $q_crtView = "CREATE VIEW supporter AS SELECT D.ID AS ID,U_PHONE,d_money FROM USER_T AS U JOIN D_INFO_T AS D ON U.id = D.id WHERE D.S_PRM='".$show_prm."';";
+			    $r_crtView = mysqli_query($conn,$q_crtView);
+
+			  
+				//뷰를 통한 공연 당 후원한 회원정보 검색
+				$q_infoUser = "SELECT ID,U_PHONE,d_money FROM supporter;";
+				$r_infoUser = mysqli_query($conn,$q_infoUser);
+
+				while($row_infoUser = mysqli_fetch_array($r_infoUser)){
 
 					if(!$row_infoUser) {return;}
 					$u_id = $row_infoUser['ID'];
 					$u_pnum = $row_infoUser['U_PHONE'];
 					$u_money = $row_infoUser['d_money'];
-
-					//$percentage계산 위한 쿼리문
-
-					
 
 					echo "
 
@@ -177,10 +182,11 @@ session_start();
 						</tr>
 					";
 					$index++;
-					// if($index==$row_cnt2['CNT']){return;}
-				}
+					
+				}//후원한 회원 정보 출력
+
 				echo "</table> <br></form>";
-			}
+			}//공연 당 테이블 생성
 			
 			mysqli_close($conn);
 		?>

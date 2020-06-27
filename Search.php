@@ -1,7 +1,6 @@
 <!-- 검색기능 처리 -->
 
-<!-- 조건에 맞는 데이터 출력-->
-<!doctype html>
+
 <html>
 <!-- print header -->
 <head>
@@ -31,25 +30,28 @@ $(document).ready( function() {
 <?
 	include './dbconn.php';
 
-	//search using what wrote
-	$text = $_POST["srchTxt"];
+	
+	$text = $_POST["srchTxt"]; //입력된 검색값
+
+  //검색값을 이용한 검색 쿼리문
 	$qSrch = "SELECT * FROM POST_T WHERE S_TITLE LIKE '%$text%'";
 	$rSrch = mysqli_query($conn,$qSrch);
 	$nDate = date('Y-m-d');
 	$cnt=1;
 
+  //검색값을 공연타이틀 전체 또는 일부분으로 가지는 공연 모두 출력
 	while($row=mysqli_fetch_array($rSrch)){
 		$title = $row['S_TITLE'];//title
 		$show_p = $row['S_PRM']; //POST_T.S_PRM
 
-		//GET SUM(D_MONEY) BY BACKING
+		//GET SUM(D_MONEY) BY supporting
 		$qSumMoney = "SELECT S_PRM, sum(d_money) as sum from d_info_t WHERE S_PRM='".$show_p."';";
 		$rSumMoney = mysqli_query($conn,$qSumMoney);
 		$row2 = mysqli_fetch_array($rSumMoney);
 
 		$leftSum = ($row['S_GOALSUM']-$row2['sum']);//goalsum - donated sum
-		$leftDate = intval((strtotime($row['S_DEADLINE'])-strtotime($nDate)) / 86400);
-		//deadline - today
+		$leftDate = intval((strtotime($row['S_DEADLINE'])-strtotime($nDate)) / 86400);//deadline - today
+		
 
 		$percentage =round($row2['sum']/$row['S_GOALSUM'],2)*100;
 

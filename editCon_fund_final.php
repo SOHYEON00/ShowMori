@@ -1,3 +1,4 @@
+<!-- 게시글정보 수정 쿼리문 실행 -->
 <?
 session_start();
 include './dbconn.php';
@@ -12,10 +13,8 @@ $deadLine = $_GET['deadLine'];
 $goalSum = $_GET['goalSum'];
 $sprm = $_GET['sprm'];
 
-		
-
         
-
+        //게시글 정보 수정 쿼리문
         $q_upFund = "UPDATE POST_T SET S_POSTER='".$filePoster."',S_SYNOP='".$fileSynop."',S_GOALSUM='".$goalSum."',S_DEADLINE='".$deadLine."',START_DAY='".$startDate."',LAST_DAY='".$lastDate."' WHERE S_PRM='".$sprm."' AND ID='".$userid."';";
         $r_upFund = mysqli_query($conn,$q_upFund);
 
@@ -70,8 +69,6 @@ $sprm = $_GET['sprm'];
                 </p>    
                 </body>
                 </html>';
-        
-
 
 mysqli_close($conn);
 ?>
