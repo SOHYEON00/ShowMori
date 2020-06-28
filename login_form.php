@@ -8,7 +8,7 @@ $id = $_REQUEST["id"];
 $pw = $_REQUEST["pass"];
 
 
-$sql = "SELECT id,pw FROM user_t WHERE id='$id' AND pw='$pw'";
+$sql = "SELECT id,pw FROM user_t WHERE id='$id' AND pw='$pw'"; //입력된 id값과 pw가 일치한지 확인
 $res = $conn->query($sql);
 $row = $res->fetch_array(MYSQLI_ASSOC);
 
@@ -69,6 +69,7 @@ $row = $res->fetch_array(MYSQLI_ASSOC);
   <div id="header"></div>
   <p id="contents">
   <?php
+  //row 튜플에 존재 할 때 로그인 정보 세션에 저장
   if($row){
     $_SESSION['userid'] = $row['id'];
     $_SESSION['userpass'] = $row['pass'];
@@ -80,6 +81,7 @@ $row = $res->fetch_array(MYSQLI_ASSOC);
     <?
     exit;
   }
+   //row 튜플에 데이터가 존재하지 않을 때
   else{
      ?>
       <script>

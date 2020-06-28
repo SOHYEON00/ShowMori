@@ -17,7 +17,7 @@
 
     $("#header").load("header.php");
   });
-  
+
   //리워드 확인 페이지 출력
    function chk_reward(){
 
@@ -32,11 +32,10 @@
 
 <body>
   <div id="header"></div>
-      <!-- <font color="BLACK" SIZE="6"><p align="center">SHOW-Mori</p></font> -->
-      <!-- <p align="center"><IMG src="line.jpg" width=1000 height=5></IMG></p> -->
   <div id="content">
     <?
     include './dbconn.php';
+    //클릭 된 게시글의 s_prm 변수에 저장
     $sinfonum = $_GET['snum'];
     $sInfo = "SELECT S_TITLE,S_POSTER,S_SYNOP,S_GOALSUM,S_DEADLINE,S_PRM from post_t WHERE S_PRM='".$sinfonum."';";
     $s_info = mysqli_query($conn,$sInfo);

@@ -9,7 +9,7 @@
   else {
     include './dbconn.php';
 
-    $sql="SELECT COUNT(*) cnt FROM user_t WHERE ID='$id'";
+    $sql="SELECT COUNT(*) cnt FROM user_t WHERE ID='$id'"; //해당 아이디를 가진 튜플 갯수
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_array($result);
 

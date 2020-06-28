@@ -89,6 +89,7 @@
         $sdate = str_replace("-", "", $row['START_DAY']);
         $ldate = str_replace("-","",$row['LAST_DAY']);
         
+        //START_DAY에서 LAST_DAY사이의 날짜 YYYY-MM-DD 형식으로 만들어 테이블에 입력
         for($i=$sdate;$i<=$ldate;$i++){
             $year= substr($i,0,4);
             $month = substr($i,4,2);

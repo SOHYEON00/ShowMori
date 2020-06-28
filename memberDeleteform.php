@@ -59,14 +59,14 @@ session_start();
    <?php
       $id = $_SESSION['userid'];
       include './dbconn.php';
-
+        // 해당 회원의 튜플 조회
         $sql1 = "SELECT * FROM user_t WHERE id='".$id."';";
         $res1 = mysqli_query($conn, $sql1);
         while($row1 = mysqli_fetch_array($res1)){
 
         $sprm=$row1['S_PRM'];
 
-
+          //탈퇴하고자 하는 회원의 정보 삭제
           $delmem1 = "DELETE FROM d_info_t WHERE id='".$id."';";
           $delmem1 .= "DELETE d FROM d_info_t as d JOIN post_t as p ON d.s_prm=p.s_prm WHERE p.id='".$id."';";
           $delmem1 .= "DELETE S FROM S_DATE_T AS S JOIN POST_T AS T ON S.S_PRM=T.S_PRM WHERE T.id ='".$id."';";

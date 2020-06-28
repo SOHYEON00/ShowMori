@@ -54,7 +54,7 @@ $(document).ready( function() {
   <p id="contents">
 <?php
   include './dbconn.php';
-
+  //폼에 입력된 값 데이터베이스에 저장
   $id=$_POST['id'];
   $password=($_POST['pass']);
   $name=$_POST['name'];

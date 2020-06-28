@@ -57,14 +57,14 @@ session_start();
         }
         
         
-        //form에서 입력한 값 getShowInfo.php로 넘겨줌
-        window.location.href='/getShowInfo.php?title='+title.value+'&fileSynop='+fileSynop.files[0].name+'&filePoster='+filePoster.files[0].name+'&startDate='+startDate.value+'&lastDate='+lastDate.value+'&deadLine='+deadLine.value+'&goalSum='+goalSum.value;
-        
-
+        //form에서 입력한 값 getShowInfo.php로 넘겨줌 (파일은 파일 이름으로 넘어가게 됨.)
+        window.location.href='./getShowInfo.php?title='+title.value+'&fileSynop='+fileSynop.files[0].name+'&filePoster='+filePoster.files[0].name+'&startDate='+startDate.value+'&lastDate='+lastDate.value+'&deadLine='+deadLine.value+'&goalSum='+goalSum.value;
+  
     
   }
   </script>
 </head>
+<body>
 <!-- 로그인이 되지 않은 경우 -->
 <?
   if(!$_SESSION['userid']) {
@@ -166,12 +166,12 @@ session_start();
 
      </div>
       <div id="extra">
-        <p class="title"> extra <hr style="border-top: 1px solid #D9D9D9;"> <input type="text"> </p>
+        <p class="title"> extra <hr style="border-top: 1px solid #D9D9D9;"> <input type="text"></p>
       </div>
-    
     </div>
     <input type="button" id="post_btn" value="POST" onClick='chkForm()'/>
   </form>
+
 
 </body>
 </html>

@@ -18,10 +18,12 @@
       });
     </script>
     <script>
+    //아이디 중복 체크
     function check_id()
     {
       window.open("check_id.php?id="+document.member_form.id.value, "IDcheck", "left=200, top=200, width=200, height=60, scrollbars=no, resizeble=yes");
     }
+    //해당 폼 작성 여부
     function check_input()
     {
       if(!document.member_form.id.value){
@@ -39,6 +41,7 @@
         document.member_form.name.focus();
         document.member_form.name.select();
       }
+      // 비밀번호 값과 비밀번호확인 값이 다를 때
         else if(document.member_form.pass.value != document.member_form.pass_confirm.value)
       {
           alert("비밀번호가 일치하지 않습니다. \n다시입력해주세요");

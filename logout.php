@@ -3,6 +3,7 @@
 
 <?php
   session_start();
+  //해당 세션 종료
   session_destroy();
   $is_logged='NO';
  ?>

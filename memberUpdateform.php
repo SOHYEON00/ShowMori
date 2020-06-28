@@ -7,6 +7,7 @@
   $name=$_REQUEST['name'];
   $phone=$_REQUEST['phone'];
 
+  //새로 입력된 값으로 회원 정보 변경
   $sql = "update user_t set pw='".$password."', u_name='".$name."', u_phone='".$phone."' WHERE id='".$_SESSION['userid']."'";
 
 
@@ -56,10 +57,10 @@
         <div id="header"></div>
         <p >
             <span >회원정보 수정을 완료했습니다.</span>
-            <button class="getShowInfo_btn"><a href="./main_page.html"> 홈으로 </a></button> 
-        </p> 
+            <button class="getShowInfo_btn"><a href="./main_page.html"> 홈으로 </a></button>
+        </p>
         </body>';
-  }else{
+  }else{ //예외처리
     echo 'fail to insert sql';
   }
   mysqli_close($conn);
