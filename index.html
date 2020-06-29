@@ -1,0 +1,41 @@
+<!-- print header -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script type="text/javascript">
+
+//페이지가 로드되면 실행한다.
+$(document).ready( function() {
+
+	$("#header").load("header.php");
+});
+
+</script>
+
+
+<link rel="stylesheet" href="./main_page.css?after"/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Do+Hyeon&family=Nanum+Brush+Script&family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
+
+
+<!--banner part -->
+	<div id="header"></div>
+	<div id="banner">
+	<img src="./IMG/mainpicture.jpg"/>
+	<h3 style="right:286px; font-size: 38px;">CROWD FUNDING</h3> <h3 class="title" style="font-family: 'Fredoka One', cursive; right:50px; font-size: 38px"> SHOW-MORI</h3>
+	<p>크라우드 펀딩을 통한<br> 후원형 공연 온라인 플랫폼 SHOW-MORI입니다.<br>후원이 필요한 공연을 직접 게시하고<br> 다양한 분야의 공연에 후원 해 보세요!</p>
+	</div>
+
+<!--body part -->
+<div id="body">
+
+<!-- print posters -->
+<table id="tname" name="tname">
+
+<? include './printImg.php';?> 
+	
+</table>
+
+</div>
+	
+</body>
+
+</html>
